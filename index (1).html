@@ -1,0 +1,739 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"><meta name="theme-color" content="#102033"><meta name="description" content="ALGOFORGE Pixel Office — a living MT5-inspired pixel art office simulator."><title>ALGOFORGE Pixel Office · GEN 3.0 · TRADING FLOOR FOCUS</title><style>
+:root{--bg:#0c1420;--panel:#182433;--panel2:#1f2d3d;--edge:#304154;--muted:#93a6bb;--text:#edf5fa;--mint:#74e0bc;--gold:#f3c67f;--blue:#75b9ed;--red:#ff8e91}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 35% -30%,#293e50 0%,#101b29 45%,#09121d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif;font-size:14px;min-height:100vh}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible{outline:2px solid #90e7d1;outline-offset:2px}body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(#fff1 1px,transparent 1px),linear-gradient(90deg,#fff1 1px,transparent 1px);background-size:52px 52px;opacity:.13}.shell{position:relative;max-width:1660px;margin:auto;padding:18px 22px 36px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}.brand{display:flex;align-items:center;gap:13px}.brand-icon{width:50px;height:50px;background:linear-gradient(145deg,#79e7d2,#4099c6);color:#102b3b;display:grid;place-items:center;border:3px solid #b6f8e5;box-shadow:0 5px 0 #10283d,0 12px 26px #0005;image-rendering:pixelated;font-size:26px;border-radius:12px}.brand .eyebrow{color:#7bcab8;letter-spacing:.22em;font-size:10px;font-weight:800;text-transform:uppercase}.brand h1{font-size:clamp(18px,2.25vw,27px);letter-spacing:-.035em;line-height:1.25;margin:3px 0}.brand p{margin:0;font-size:12px;color:var(--muted)}.header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}.pill{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;background:#203548;border:1px solid #3b5669;border-radius:11px;font-size:11px;font-weight:700;letter-spacing:.02em;white-space:nowrap}.pill.warn{color:#f8d8a3;border-color:#806b40;background:#473e2d}.dot{width:7px;height:7px;display:inline-block;border-radius:50%;background:#69d7c7;box-shadow:0 0 10px #6edbd1}.pill.warn .dot{background:var(--gold);box-shadow:0 0 9px #eabc70}.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-bottom:15px}.metric{background:linear-gradient(150deg,#233548,#1a2837 75%);border:1px solid #34485d;border-radius:14px;padding:14px 17px;box-shadow:0 5px 20px #0002;min-width:0}.metric small{font-weight:650;color:#9aacbd;font-size:11px;letter-spacing:.035em;display:flex;align-items:center;justify-content:space-between}.metric strong{font-size:clamp(18px,2.2vw,27px);letter-spacing:-.04em;display:block;margin-top:5px;font-variant-numeric:tabular-nums}.metric .mini{font-size:10px;color:#84dec1}.metric:nth-child(2) strong{color:#f3d99d}.metric:nth-child(4) strong{color:#8ce2c0}.main-grid{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:14px;align-items:start}.game-card,.side-card,.bottom-card{background:linear-gradient(160deg,#202f3f,#152332);border:1px solid #385066;border-radius:16px;box-shadow:0 9px 32px #0004;overflow:hidden}.game-head{padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid #3d5063}.game-head h2{margin:0;font-size:15px;letter-spacing:-.02em}.game-head p{margin:3px 0 0;font-size:11px;color:var(--muted)}.game-head .tools{display:flex;gap:6px}.tiny{background:#2b4358;border:1px solid #456179;border-radius:8px;padding:7px 11px;font-weight:800;font-size:12px}.tiny:hover,.act:hover{filter:brightness(1.18)}.stage{position:relative;overflow:hidden;background:#121e28;min-height:390px;height:clamp(420px,60vw,690px);touch-action:none;cursor:grab}.stage:active{cursor:grabbing}canvas{display:block;width:100%;height:100%;image-rendering:pixelated;touch-action:none}.stage-label{position:absolute;left:12px;top:12px;background:#102231dd;border:1px solid #4e6f80;border-radius:8px;color:#cde6e5;font-size:10px;font-weight:800;letter-spacing:.08em;padding:8px 10px;pointer-events:none}.stage-bottom{position:absolute;right:12px;bottom:12px;background:#102231dd;border:1px solid #4e6f80;border-radius:8px;color:#d0e4e6;font-size:10px;font-weight:700;padding:7px 9px;pointer-events:none}.game-foot{padding:10px 15px;color:#b0c2d2;font-size:11px;display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-top:1px solid #32465b}.side-col{display:flex;flex-direction:column;gap:12px}.side-card{padding:14px}.side-card h3,.bottom-card h3{font-size:13px;letter-spacing:.02em;margin:0 0 12px}.side-card .minor{color:var(--muted);font-size:11px}.roster{display:grid;grid-template-columns:1fr;gap:5px;max-height:360px;overflow:auto}.staff{display:flex;align-items:center;gap:9px;background:#223548;border:1px solid transparent;border-radius:10px;padding:7px 8px;cursor:pointer;text-align:left;width:100%}.staff:hover{background:#2b4257}.staff.selected{border-color:#82dfc5;background:#2b4b4d}.avatar{width:29px;height:29px;border:2px solid #fff3;display:grid;place-items:center;border-radius:8px;font-size:15px;flex:0 0 auto;color:#1a3044}.stafftxt{min-width:0;flex:1}.stafftxt b{display:block;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.stafftxt small{display:block;margin-top:3px;color:#9aafbf;font-size:10px}.mood{font-size:15px}.inspector{line-height:1.65}.inspector-head{display:flex;align-items:center;gap:11px;margin-bottom:11px}.inspector-head .big-avatar{font-size:29px;width:53px;height:53px;display:grid;place-items:center;border-radius:12px;background:#416376}.inspector strong{font-size:14px}.inspector small{color:#a5bbcb}.bar{height:8px;background:#102230;border-radius:6px;margin:3px 0 8px;overflow:hidden}.bar span{display:block;height:100%;background:linear-gradient(90deg,#66c9cf,#99e8ad)}.cols{display:flex;align-items:center;justify-content:space-between;gap:8px}.feed{height:180px;overflow:auto;display:flex;flex-direction:column;gap:6px}.feed-row{padding:9px;background:#223447;border:1px solid #ffffff0d;border-radius:9px;font-size:11px;line-height:1.35}.feed-time{color:#80d7c4;font-size:10px;font-weight:700;margin-right:7px}.bottom{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:14px}.bottom-card{padding:15px}.actions{display:flex;flex-wrap:wrap;gap:8px}.act{display:inline-flex;align-items:center;gap:6px;justify-content:center;background:#2d4961;border:1px solid #54718b;border-radius:9px;padding:9px 13px;font-size:12px;font-weight:750;min-height:38px}.act.primary{background:#326f63;border-color:#63b6a0}.act.gold{background:#776141;border-color:#bda06a}.act.danger{background:#74434b;border-color:#ae737d}.act.on{box-shadow:inset 0 0 0 1px #8ae3cd;background:#3e7068}.subline{font-size:11px;color:#a7bac9;margin:11px 0 0;line-height:1.55}.legend{display:flex;flex-wrap:wrap;gap:7px}.legend span{font-size:10px;color:#b6c9d9;background:#273e50;border:1px solid #345568;border-radius:20px;padding:6px 9px}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(70px);opacity:0;transition:.25s;max-width:min(550px,92vw);background:#2b4b4a;border:1px solid #74ccb2;padding:12px 17px;border-radius:12px;z-index:10;box-shadow:0 10px 30px #0009;font-weight:700;font-size:12px;pointer-events:none;text-align:center}.toast.visible{transform:translateX(-50%) translateY(0);opacity:1}.select-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.decorbtn{padding:7px 9px;border-radius:8px;border:1px solid #52697a;background:#304458;font-size:11px}.decorbtn.sel{border-color:#8ce2bc;background:#315a52}.hidden{display:none!important}@media(max-width:1130px){.main-grid{grid-template-columns:1fr}.side-col{display:grid;grid-template-columns:1fr 1fr 1fr}.roster{max-height:220px}.stage{height:clamp(420px,65vw,680px)}}@media(max-width:760px){.shell{padding:10px 8px 24px}.topbar{align-items:flex-start}.header-right{justify-content:flex-start}.brand-icon{width:42px;height:42px;font-size:21px}.brand h1{font-size:19px}.brand p{font-size:10px}.pill{padding:7px 9px;font-size:10px}.metrics{grid-template-columns:repeat(2,1fr);gap:7px}.metric{padding:11px 12px}.metric strong{font-size:21px}.metrics .metric:last-child{grid-column:span 2}.main-grid{gap:9px}.side-col{grid-template-columns:1fr;gap:9px}.stage{height:450px;min-height:350px}.game-head{padding:10px 12px}.bottom{grid-template-columns:1fr;gap:9px;margin-top:9px}.bottom-card{padding:12px}.game-foot{font-size:10px}.roster{display:grid;grid-template-columns:repeat(2,1fr);max-height:none}.staff{padding:6px}.stafftxt b{font-size:10px}.feed{height:190px}}@media(max-width:380px){.stage{height:400px}.roster{grid-template-columns:1fr}.act{padding:8px 9px;font-size:11px}}
+
+/* GEN 2.4 · 2D: management scorecards and event widgets */
+@media(max-width:760px){.topbar{flex-wrap:wrap}.header-right{width:100%;justify-content:flex-start}.header-right .pill{max-width:100%;white-space:normal;line-height:1.35}.brand{min-width:0}.brand>div:last-child{min-width:0}}
+.side-card h3{display:flex;align-items:center;gap:7px}.rank-head{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-bottom:11px}.rank-head h3{margin:0}.tiny-pill{font-size:9px;font-weight:800;letter-spacing:.04em;border:1px solid #64816e;color:#99f0bf;border-radius:8px;padding:5px 7px;background:#294638}.rank-summary{padding:10px 11px;border:1px solid #49705a;background:linear-gradient(115deg,#2d5149,#243d4b);border-radius:10px;margin-bottom:10px}.rank-summary small{display:block;color:#a6d9c4;font-size:10px;font-weight:750;letter-spacing:.05em}.rank-summary b{font-size:14px;display:block;margin-top:4px}.rank-row{display:flex;align-items:center;gap:8px;padding:7px 6px;border-bottom:1px solid #ffffff13;font-size:11px}.rank-row:last-child{border-bottom:0}.rank-no{width:20px;color:#91b3c6;font-weight:900;flex:0 0 auto}.rank-no.gold{color:#f4d386}.rank-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}.rank-pnl{font-variant-numeric:tabular-nums;font-weight:850}.rank-pnl.win{color:#8ee2ac}.rank-pnl.loss{color:#ff969c}.rank-pnl.zero{color:#a6b9c5}.rank-footer{font-size:10px;color:#a6b9c5;margin-top:9px;line-height:1.5}.schedule-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:11px}.schedule-chip{padding:8px 6px;background:#263b4e;border:1px solid #39546b;border-radius:9px;text-align:center}.schedule-chip strong{display:block;font-size:11px}.schedule-chip small{display:block;font-size:9px;color:#9eb4c6;margin-top:3px}.schedule-chip.active{border-color:#84d5bd;background:#315950}.session-line{font-size:11px;color:#c5d9e2;margin-top:7px}.relationship{background:#263b4e;border-radius:8px;border:1px solid #354a5a;padding:9px 11px;margin-top:10px;font-size:11px}.relationship b{color:#a2e0c7}.random-event{border-left:3px solid #e4c17e!important}.rank-banner{position:absolute;right:13px;top:47px;z-index:2;font-size:10px;background:#152a37df;border:1px solid #658275;border-radius:8px;padding:6px 9px;pointer-events:none;color:#ffe6b5}.cats{color:#d8b990}.eventdot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#f3c16e;box-shadow:0 0 8px #f3c16e;margin-right:4px}
+@media(max-width:760px){.rank-banner{display:none}.schedule-strip{grid-template-columns:repeat(2,1fr)}.rank-row{font-size:11px}}
+
+/* GEN 2.4 crisp 2D art direction */
+.stage{background:#112836}.game-card{border-color:#4e7181;box-shadow:0 15px 42px #0006}.game-head{background:linear-gradient(90deg,#253b49,#182938)}
+.metric{background:linear-gradient(135deg,#233849,#162a38);border-color:#456275}.side-card,.bottom-card{border-color:#3f5a6c}
+.pill{border-radius:8px}.brand-icon{border-radius:9px}.game-foot{background:#162836}
+@media(max-width:760px){.game-head{align-items:start}.stage{height:470px}}
+
+/* GEN 3.0: premium high-focus trading floor, compact responsive desk monitoring */
+:root{--bg:#08121e;--panel:#15283b;--panel2:#1a3445;--mint:#89e9d1;--gold:#f6d599}
+.game-card,.side-card,.bottom-card{border-color:#426175;box-shadow:0 10px 35px #00101c75, inset 0 1px 0 #a5e9eb0b}
+.game-head{background:linear-gradient(90deg,#203c49,#172d40);border-bottom:1px solid #3f6771}
+.stage{background:#091c2a;border:2px solid #416b79}
+.stage-workstate{position:absolute;top:12px;right:12px;background:#153f3bdd;border:1px solid #69bca6;border-radius:8px;color:#baffdf;font-size:11px;font-weight:850;letter-spacing:.03em;padding:8px 10px;pointer-events:none}
+.focus-stat{font-weight:900;color:#93f2d7;font-size:21px;letter-spacing:-.04em;margin:5px 0 12px}
+.focus-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.focus-item{background:#162d3d;border:1px solid #34586b;border-radius:9px;padding:8px 7px;min-width:0;cursor:pointer;text-align:left}
+.focus-item:hover{background:#244457}.focus-item b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px;margin-bottom:4px}
+.focus-item small{display:block;font-size:10px;color:#a0d5c5}
+.focus-item .focus-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#7ee8c2;margin-right:4px;box-shadow:0 0 7px #75e8c6}
+.desk-caption{color:#9db6c6;font-size:10px;line-height:1.5;margin:10px 0 0}
+.brand-icon{background:linear-gradient(145deg,#a4ead6,#5bb0d2);box-shadow:0 6px 0 #09283b,0 12px 25px #0008}
+.game-foot{background:#122a38}
+@media(max-width:760px){.stage-workstate{top:51px;right:10px;font-size:9px;padding:6px 8px}.focus-grid{grid-template-columns:repeat(3,1fr)}.focus-item{padding:7px 6px}.focus-item b{font-size:9px}}
+@media(max-width:420px){.focus-grid{grid-template-columns:repeat(2,1fr)}}
+</style></head><body><div class="shell">
+<header class="topbar"><div class="brand"><div class="brand-icon">▦</div><div><div class="eyebrow">ALGOFORGE MY · Headquarters</div><h1>PIXEL OFFICE <span style="color:#8ae6c8">GEN 3.0 · 2D</span></h1><p>Where Algorithms Come to Life. ✦ Trading Floor HQ · 12 characters · Real desk-focused trading simulation.</p></div></div><div class="header-right"><span class="pill warn"><span class="dot"></span> SIMULATION ONLY · NOT CONNECTED TO MT5</span><span class="pill">🪑 TRADER DESK FOCUS · PURE 2D</span></div></header>
+<section class="metrics"><div class="metric"><small>OFFICE LEVEL <span>🏢</span></small><strong id="level">01</strong><div class="mini" id="levelHint">Startup HQ</div></div><div class="metric"><small>OFFICE XP <span>✦</span></small><strong id="xp">0</strong><div class="mini" id="xpHint">500 XP to expansion</div></div><div class="metric"><small>OFFICE TIME <span>🕘</span></small><strong id="clock">09:00</strong><div class="mini" id="shift">Day shift</div></div><div class="metric"><small>CLEANLINESS <span>🧹</span></small><strong id="clean">96%</strong><div class="mini">Cleaner on patrol</div></div><div class="metric"><small>TEAM ON DUTY <span>💼</span></small><strong id="team">10 / 10</strong><div class="mini">6 EAs · 2 HR · Cleaner · CEO</div></div></section>
+<div class="main-grid"><section class="game-card"><div class="game-head"><div><h2>🏙️ ALGOFORGE Trading Headquarters</h2><p>Six traders at their PCs · animated multi-screen workstations · living NPCs.</p></div><div class="tools"><button class="tiny" id="zoomOut" title="Zoom out" aria-label="Zoom out">−</button><button class="tiny" id="resetCamera" title="Fit office">⌂</button><button class="tiny" id="zoomIn" title="Zoom in" aria-label="Zoom in">+</button></div></div><div class="stage" id="stage"><canvas id="office" aria-label="Interactive pixel art office simulation"></canvas><span class="stage-label" id="mapLabel">LEVEL 01 · STARTUP HQ</span><span class="stage-bottom">✥ Drag · Pinch to zoom · Select workstation</span><span class="stage-workstate" id="stageWork">🪑 6/6 AT DESKS</span></div><div class="game-foot"><span>🪑 Trading staff remain seated · 🎧 Voice meetings · 🧕 Two HR managers</span><span>🟢 Trading Floor Focus · ON</span></div></section>
+<aside class="side-col"><section class="side-card" id="deskFocus"><div class="rank-head"><h3>🖥️ Trading Desk Monitor</h3><span class="tiny-pill">FOCUS MODE</span></div><div class="focus-stat" id="focusStat">6/6 traders seated</div><div class="focus-grid" id="focusGrid"></div><p class="desk-caption">Market workstation animation is simulated. Traders stay at their PCs; HR and support staff can roam.</p></section><section class="side-card" id="scorecard"><div class="rank-head"><h3>🏆 Employee Performance</h3><span class="tiny-pill">DEMO · MONTHLY</span></div><div class="rank-summary" id="topWorker"><small>EMPLOYEE OF THE MONTH</small><b>No closed demo trades yet</b></div><div id="leaderboard"></div><div class="rank-footer" id="bottomWorker">Ranking uses simulated net closed P/L. Staff with no closed trades remain unranked. Actual MT5 data comes in a later phase.</div></section><section class="side-card"><div class="cols"><h3>👥 Your Team</h3><span class="minor">12 characters</span></div><div id="roster" class="roster"></div></section><section class="side-card"><h3>🪪 Employee Profile</h3><div id="inspector" class="inspector"><small>Select a character to see their office life.</small></div></section><section class="side-card"><div class="cols"><h3>📰 Office Gossip</h3><span class="minor">Live simulation</span></div><div id="feed" class="feed" aria-live="polite"></div></section></aside></div>
+<div class="bottom"><section class="bottom-card"><h3>🎮 CEO Trading Floor Control</h3><div class="actions"><button class="act" id="day">☀️ Day</button><button class="act" id="night">🌙 Night</button><button class="act" id="allTalk">💬 Headset Chatter</button><button class="act primary" id="deskRecall">🪑 Recall Traders</button><button class="act" id="meeting">📣 HR Meeting</button><button class="act" id="hrDuo">🧕 HR Duo Drama</button><button class="act" id="officeEvent">🎲 Random Event</button><button class="act" id="demoWeek">🏅 Generate Demo Results</button><button class="act" id="clearRanks">♻ Reset Demo Ranking</button><button class="act primary" id="buy">↗ Sim BUY</button><button class="act danger" id="sell">↘ Sim SELL</button><button class="act gold" id="tp">🏆 Sim TP</button><button class="act" id="sl">⚠ Sim SL</button><button class="act" id="speed">⏩ 1× Speed</button><button class="act primary" id="expansion">🧱 Expand · 500 XP</button></div><p class="subline">All performance figures are <b>fictional demo results in USD</b>. All trade buttons are a <b>game demonstration</b>; they do not place orders. Office activity does not alter any MT5 EA, lot size, entry, SL or TP.</p></section><section class="bottom-card"><h3>🪴 Decorate & Grow</h3><div class="legend"><span>🌿 Plants + greenery</span><span>🧋 Pantry coffee</span><span>🛋️ Nap & lounge</span><span>💬 Nuha & Adawiah HR drama</span><span>🎈 TP celebrations</span><span>🐈 Mochi the office cat</span><span>🛡️ Security rounds</span></div><div class="select-row"><button id="decorToggle" class="act">🛠 Decorate Mode: OFF</button><button class="decorbtn sel" data-decor="plant">🌱 Plant · 30 XP</button><button class="decorbtn" data-decor="lamp">💡 Lamp · 40 XP</button><button class="decorbtn" data-decor="rug">▦ Rug · 55 XP</button></div><div class="schedule-strip" id="scheduleStrip"></div><div class="session-line" id="scheduleCurrent">🗓️ Smart schedule is loading...</div><div class="relationship" id="socialStatus">💬 Staff relationships are developing automatically.</div><p class="subline">Earn XP from simulated achievements and office events. Unlock the new wing, then place decorations where you like. Layout and XP save in this browser.</p></section></div></div><div class="toast" id="toast" role="status"></div>
+<script>
+(()=>{'use strict';
+const el=id=>document.getElementById(id), stage=el('stage'), canvas=el('office'), ctx=canvas.getContext('2d',{alpha:false});
+const W=1550,H=812, START_WIDTH=1195, CELL=20, rand=(a,b)=>a+Math.random()*(b-a), choice=a=>a[Math.floor(Math.random()*a.length)], clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const saveKey='algoforge_pixel_gen2_v1';
+let saved={}; try{saved=JSON.parse(localStorage.getItem(saveKey)||'{}')}catch(e){}
+let old={};try{old=JSON.parse(localStorage.getItem('algoforge_office_v1')||'{}')}catch(e){}
+let xp=Number.isFinite(saved.xp)?saved.xp:(old.xp||0),expanded=typeof saved.expanded==='boolean'?saved.expanded:!!old.expanded;
+let decor=Array.isArray(saved.decor)?saved.decor:[],decorMode=false,decorType='plant';
+let cleanliness=96,minute=9*60+20,timeScale=1,tickCount=0,selected=9,alerts=[],trash=[],night=false,navVersion=0,meetingTimer=0,lastTalk=0,toastTimer;
+let screenW=1000,screenH=625,dpr=1,scale=0.72,cx=610,cy=404,dragStart=null,pointers=new Map(),gesture=null;
+let cachedRoom=null;
+const rooms=[
+ {id:'ceo',label:'CEO SUITE',x:30,y:28,w:238,h:204,wall:'#54707c',floor:'#786752',pattern:'#89775f',door:['bottom',154],badge:'01'},
+ {id:'hr',label:'HUMAN RESOURCES',x:280,y:28,w:268,h:204,wall:'#626e89',floor:'#70677c',pattern:'#847791',door:['bottom',414],badge:'02'},
+ {id:'meeting',label:'CONFERENCE',x:560,y:28,w:280,h:204,wall:'#628476',floor:'#687d6e',pattern:'#7b947d',door:['bottom',698],badge:'03'},
+ {id:'pantry',label:'COFFEE & PANTRY',x:852,y:28,w:332,h:204,wall:'#8b855c',floor:'#9a8767',pattern:'#af9875',door:['bottom',1008],badge:'04'},
+ {id:'trading',label:'TRADING FLOOR',x:30,y:322,w:790,h:464,wall:'#477e87',floor:'#465968',pattern:'#536e76',door:['top',424],badge:'05'},
+ {id:'nap',label:'REST PODS',x:852,y:322,w:332,h:207,wall:'#8b748d',floor:'#746a84',pattern:'#857890',door:['left',427],badge:'06'},
+ {id:'lounge',label:'SOCIAL LOUNGE',x:852,y:540,w:332,h:246,wall:'#887e9e',floor:'#746a85',pattern:'#89809e',door:['left',670],badge:'07'}
+];
+const deskCoords=[{x:91,y:400},{x:341,y:400},{x:591,y:400},{x:91,y:591},{x:341,y:591},{x:591,y:591}];
+const furniture=[
+ {x:94,y:105,w:132,h:62,id:'ceoDesk'}, {x:338,y:103,w:148,h:58,id:'hrDesk'},
+ {x:620,y:93,w:164,h:82,id:'meetingTable'}, {x:903,y:73,w:221,h:52,id:'pantryCounter'},
+ {x:1027,y:157,w:95,h:40,id:'pantryTable'},
+ ...deskCoords.map((d,i)=>({x:d.x,y:d.y,w:153,h:74,id:'desk'+i})),
+ {x:930,y:376,w:206,h:73,id:'napBed'}, {x:917,y:633,w:159,h:58,id:'loungeSofa'}
+];
+const roles=[
+ ['APEX','Trend Analyst','#5ec5e0','🧑‍💻','blue'],
+ ['NOVA PRO','Market Strategist','#d9a0ec','👩‍💻','purple'],
+ ['RBR DBD','Zone Hunter','#ffab7e','🧑‍💻','orange'],
+ ['M1 GEN 2','Precision Sniper','#90e1ae','👨‍💻','mint'],
+ ['M1 PRECISION','Scalping Analyst','#f5cb7f','👨‍💻','gold'],
+ ['APEX GEN 2','Entry Specialist','#8eacfa','👩‍💻','indigo'],
+ ['NUHA','HR Manager','#ffa9c1','🧕','hijab'],
+ ['CLEANER','Facilities Lead','#a5edd5','🧹','cleaner'],
+ ['CEO','Founder & Boss','#f8d782','👑','ceo'],
+ ['ADAWIAH','HR Officer · People & Culture','#7ad9d1','🧕','hijab'],
+ ['GUARD','Security & Safety','#8bbcf2','🛡️','guard'],
+ ['MOCHI','Office Cat','#e7c68d','🐈','cat']
+];
+const people=roles.map((r,i)=>({id:i,name:r[0],role:r[1],color:r[2],emoji:r[3],style:r[4],x:i<6?deskCoords[i].x+75:[414,940,155,500,1130,1110][i-6],y:i<6?deskCoords[i].y+109:[198,675,191,196,280,731][i-6],path:[],timer:rand(1,5),speech:'',speechUntil:0,energy:rand(62,99),mood:rand(70,97),where:i<6?'desk':(i===6||i===9)?'hr':i===7?'lounge':'ceo',trade:null,state:i<6?'Working':(i===6||i===9)?'Checking attendance':i===7?'Cleaning':'Thinking big',walking:false,dir:'down',motion:0,talking:0,dx:0,dy:0}));
+const dialogues={
+ 0:['The trend looks interesting.','Coffee first, charts second.','My indicators need a holiday.','NOVA, stop stealing my snacks!','I found a potential setup.'],
+ 1:['Patience is part of the strategy.','Who moved my coffee?','APEX, focus on the chart!','I need a quieter office.','That candle is dramatic.'],
+ 2:['That zone looks suspicious.','No chasing the market, team.','I need more coffee for this chart.','Who finished the biscuits?','This is my favourite desk.'],
+ 3:['Precision, not panic!','One minute, one mission.','Shh! I am watching price action.','HR, can meetings wait?','My keyboard is faster than yours.'],
+ 4:['Wait for confirmation!','I deserve a snack break.','This market is full of surprises.','Why is the printer always broken?','Let me finish this analysis.'],
+ 5:['Good entries take patience.','I see movement on the screen.','Who turned on the aircon?','My setup needs some space.','I am taking the last cookie.'],
+ 6:['Everyone, PLEASE tidy your desks!','WHO left cups in the meeting room?!','Attendance check, people!','Stop gossiping, get back to work!','I said FIVE minutes, not fifty!','Cleaner is not your personal assistant!','CEO, I need an HR budget!','Why is APEX sleeping again?!','No coffee stains on my paperwork!'],
+ 7:['I JUST cleaned this floor!','Who left crumbs in the pantry?!','That bin is not a basketball hoop!','Can someone wash their own mug?','Nuha, I need a coffee break too!','This office is a full-time workout.'],
+ 8:['How is my team doing?','Everyone deserves a break.','Nuha, any updates from HR?','Adawiah, is everyone behaving?','Our office looks fantastic!','Where did my espresso go?'],
+ 9:['EXCUSE ME! Where is your attendance report?!','Nuha, did you see the pantry mess?!','I want every desk tidy by lunch!','Who approved this extra coffee break?!','Five minutes means FIVE minutes!','APEX, no sleeping during office hours!','I can hear the gossip from my office!','Cleaner, thank you. The rest of you, HELP!','CEO, we need another HR meeting!','Who left their mug on my paperwork?!','Nuha, back me up on this!','Please stop running through the corridor!'],
+ 10:['Security round complete.','Badge check! Where is your badge?','Who left the front door open?!','I saw Mochi sneaking into HR.','Office is secure, boss.','I guard the coffee too, sometimes.'],
+ 11:['Meow!','Mrrrp...','Purr purr.','Where are my treats?','This is MY desk now.','Meeeeow!']
+};
+const actions={desk:'💻 Working',pantry:'☕ Coffee break',nap:'💤 Power nap',lounge:'🛋️ Social break',meeting:'📣 Team meeting',hr:'📋 HR round',ceo:'👑 CEO duties',clean:'🧹 Cleaning',gate:'🛡️ Security patrol',pet:'🐈 Cat exploring'};
+const spots={
+ desk:i=>[deskCoords[i].x+76,deskCoords[i].y+111],
+ hr:[[320,185],[476,184],[388,180]],ceo:[[85,187],[226,193],[162,192]],
+ pantry:[[924,185],[989,185],[1110,189],[1160,170]],
+ meeting:[[596,192],[680,190],[795,192],[790,75],[595,75]],
+ nap:[[900,482],[1147,483],[1010,488]],
+ lounge:[[893,749],[1109,744],[1078,568],[915,575]],
+ clean:[[1145,192],[862,275],[844,700],[824,310],[1067,755]],
+ lab:[[1325,166],[1410,288],[1320,620]],
+ gate:[[1128,285],[1050,282],[845,280],[1144,309]],
+ pet:[[1103,728],[928,573],[890,284],[969,738],[1040,280]]
+};
+function fmt(){let t=Math.floor(minute)%1440;return `${String(Math.floor(t/60)).padStart(2,'0')}:${String(t%60).padStart(2,'0')}`}
+function persist(){try{localStorage.setItem(saveKey,JSON.stringify({xp,expanded,decor}))}catch(e){}}
+function news(message,source='OFFICE'){alerts.unshift({t:fmt(),message,source});alerts=alerts.slice(0,24);renderFeed()}
+function renderFeed(){el('feed').innerHTML=alerts.map(a=>`<div class="feed-row"><span class="feed-time">${a.t}</span><b>${a.source}</b> · ${escapeHtml(a.message)}</div>`).join('')}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function toast(s){const t=el('toast');t.textContent=s;t.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('visible'),2700)}
+function earn(n,why){xp=Math.max(0,xp+n);persist();news(`${why} ${n>0?'+':''}${n} Office XP`,'MILESTONE');toast(`${n>0?'+':''}${n} OFFICE XP · ${why}`)}
+function atNight(){return minute>=19*60||minute<6*60}
+function speak(p,line,record=false){p.speech=line;p.speechUntil=performance.now()+Math.max(3600,Math.min(6200,line.length*96));p.talking=1.4;if(record)news(`${p.name}: “${line}”`,'GOSSIP')}
+function cheer(){people.forEach((p,i)=>{if(Math.random()<.65)speak(p,choice(['Great job, team!','That calls for coffee!','Proud of us!','A win for the office!']))});}
+function select(p){selected=p.id;updatePanels();render(performance.now());}
+function setupRoster(){const r=el('roster');r.innerHTML='';people.forEach(p=>{let b=document.createElement('button');b.className='staff';b.id='staff'+p.id;b.innerHTML=`<span class="avatar" style="background:${p.color}">${p.emoji}</span><span class="stafftxt"><b>${p.name}</b><small id="st${p.id}">${p.state}</small></span><span class="mood" id="mo${p.id}">🙂</span>`;b.addEventListener('click',()=>{select(p);focus(p.x,p.y,true)});r.appendChild(b)})}
+function updatePanels(){el('level').textContent=expanded?'02':'01';el('levelHint').textContent=expanded?'Expansion Wing':'Startup HQ';el('xp').textContent=Math.floor(xp).toLocaleString('en-US');el('xpHint').textContent=expanded?'New wing unlocked':`${Math.max(0,500-xp)} XP to expansion`;el('clock').textContent=fmt();el('shift').textContent=atNight()?'🌙 Night shift':'☀️ Day shift';el('clean').textContent=Math.round(cleanliness)+'%';el('team').textContent=people.length+' / '+people.length;el('mapLabel').textContent=expanded?'LEVEL 02 · EXPANDED HQ':'LEVEL 01 · STARTUP HQ';el('expansion').textContent=expanded?'✅ Wing Unlocked':'🧱 Expand · 500 XP';
+  for(let p of people){let a=el('st'+p.id),b=el('mo'+p.id),row=el('staff'+p.id);if(a)a.textContent=p.state;if(b)b.textContent=p.energy<35?'😴':p.mood>78?'😊':p.mood<45?'😐':'🙂';if(row)row.classList.toggle('selected',p.id===selected)}
+  let p=people[selected];el('inspector').innerHTML=`<div class="inspector-head"><span class="big-avatar" style="background:${p.color}55">${p.emoji}</span><div><strong>${p.name}</strong><br><small>${p.role}</small></div></div><div class="cols"><span>Currently</span><b>${p.state}</b></div><div class="cols"><span>Energy</span><b>${Math.round(p.energy)}%</b></div><div class="bar"><span style="width:${p.energy}%"></span></div><div class="cols"><span>Mood</span><b>${Math.round(p.mood)}%</b></div><div class="bar"><span style="width:${p.mood}%;background:linear-gradient(90deg,#f8c875,#90ddab)"></span></div><div class="cols"><span>Demo trade</span><b style="color:${p.trade==='BUY'?'#79baf7':p.trade==='SELL'?'#ff989c':'#9eb6c6'}">${p.trade||'None'}</b></div><small>Personality and activities are game-only simulations.</small>`}
+function roomContains(r,x,y){return x>r.x&&y>r.y&&x<r.x+r.w&&y<r.y+r.h}
+function wallBlocked(r,x,y){if(!roomContains(r,x,y))return false;let s=11, L=x-r.x,R=r.x+r.w-x,T=y-r.y,B=r.y+r.h-y;
+ if(L>s&&R>s&&T>s&&B>s)return false;
+ const [side,position]=r.door, gap=32;
+ if(side==='bottom'&&B<=s+3&&Math.abs(x-position)<gap)return false;
+ if(side==='top'&&T<=s+3&&Math.abs(x-position)<gap)return false;
+ if(side==='left'&&L<=s+3&&Math.abs(y-position)<gap)return false;
+ if(side==='right'&&R<=s+3&&Math.abs(y-position)<gap)return false;
+ return true}
+function navigable(x,y){if(x<27||y<25||x>W-28||y>H-25)return false;
+ if(!expanded&&x>1190)return false;
+ if(expanded&&x>1182&&x<1217&&!(y>251&&y<316))return false;
+ if(rooms.some(r=>wallBlocked(r,x,y)))return false;
+ // Rooms in the expansion wing remain physically contiguous, with shared open walking paths.
+ if(expanded&&x>1217&&x<1530&&y>25&&y<790){if(x>1222&&x<1520&&y>227&&y<240)return false;return true}
+ if(furniture.some(f=>x>f.x-7&&x<f.x+f.w+7&&y>f.y-7&&y<f.y+f.h+7))return false;
+ if(decor.some(d=>d.type!=='rug'&&Math.hypot(x-d.x,y-d.y)<18))return false;
+ return true}
+const cols=Math.ceil(W/CELL),rows=Math.ceil(H/CELL);let nav=[];
+function rebuildNav(){nav=new Uint8Array(cols*rows);for(let yy=0;yy<rows;yy++)for(let xx=0;xx<cols;xx++)nav[yy*cols+xx]=navigable((xx+.5)*CELL,(yy+.5)*CELL)?1:0;navVersion++}
+function nodeOf(x,y){return clamp(Math.floor(y/CELL),0,rows-1)*cols+clamp(Math.floor(x/CELL),0,cols-1)}
+function pointOf(n){return [(n%cols+.5)*CELL,(Math.floor(n/cols)+.5)*CELL]}
+function closestFree(id){if(nav[id])return id;let x=id%cols,y=Math.floor(id/cols);for(let d=1;d<13;d++)for(let dx=-d;dx<=d;dx++)for(let dy=-d;dy<=d;dy++){if(Math.abs(dx)!==d&&Math.abs(dy)!==d)continue;let xx=x+dx,yy=y+dy;if(xx>=0&&yy>=0&&xx<cols&&yy<rows&&nav[yy*cols+xx])return yy*cols+xx}return -1}
+function route(ax,ay,bx,by){let s=closestFree(nodeOf(ax,ay)),e=closestFree(nodeOf(bx,by));if(s<0||e<0)return [];
+ if(s===e)return [pointOf(e)];let seen=new Int32Array(cols*rows);seen.fill(-1);let q=new Int32Array(cols*rows);q[0]=s;seen[s]=s;let head=0,tail=1;const offsets=[-1,1,-cols,cols];while(head<tail){let n=q[head++];if(n===e)break;for(let off of offsets){let z=n+off;if(z<0||z>=nav.length||!nav[z]||seen[z]>=0)continue;if((off===1||off===-1)&&Math.floor(z/cols)!==Math.floor(n/cols))continue;seen[z]=n;q[tail++]=z}}
+ if(seen[e]<0)return [];let path=[];let n=e;while(n!==s&&path.length<300){path.push(pointOf(n));n=seen[n]}path.reverse();return path}
+function targetFor(p,where){let t;if(where==='desk'&&p.id<6)t=spots.desk(p.id);else if(where==='clean'&&trash.length){let tr=choice(trash);t=[tr.x+22,tr.y+21]}else{t=choice(spots[where]||spots.lounge)};return [t[0]+rand(-8,8),t[1]+rand(-8,8)]}
+function command(p,where){let [x,y]=targetFor(p,where);let path=route(p.x,p.y,x,y);
+ if(path.length){p.path=path;p.where=where;p.state=actions[where]||'Exploring';p.timer=rand(where==='nap'?15:7,where==='nap'?26:16)} else {p.timer=4}}
+function job(p){let i=p.id;if(meetingTimer>0){command(p,'meeting');return}let where;
+ if(i===6||i===9){where=choice(['hr','hr','meeting','pantry','lounge','hr'])}else if(i===7){where=trash.length&&Math.random()<.75?'clean':choice(['clean','pantry','lounge','clean','clean'])}else if(i===8){where=choice(['ceo','ceo','meeting','pantry','lounge'])}else if(p.energy<30){where='nap'}else if(i<6&&p.trade){where='desk'}else if(i<6){where=choice(['desk','desk','desk','pantry','meeting','lounge','nap'])}else where='lounge';
+ command(p,where)}
+function talkRandom(p){let line=choice(dialogues[p.id]);if((p.id===6||p.id===9)&&cleanliness<55)line='This office is NOT a rubbish dump!';speak(p,line,Math.random()<.33)}
+function simTrade(kind){let p=choice(people.slice(0,6));if(kind==='BUY'||kind==='SELL'){p.trade=kind;command(p,'desk');p.energy=clamp(p.energy+8,0,100);speak(p,kind==='BUY'?'BUY setup detected. Time to focus!':'SELL setup detected. Eyes on the chart!',true);news(`${p.name} opened a simulated ${kind} position.`,'TRADE DEMO');toast(`SIMULATED ${kind} · ${p.name}`)}else{let open=people.slice(0,6).filter(x=>x.trade),q=open.length?choice(open):p;q.trade=null;command(q,'desk');if(kind==='TP'){earn(120,'Simulated TP celebration.');speak(q,'TAKE PROFIT! Coffee for everyone!',true);for(const hr of [people[6],people[9]])hr.mood=clamp(hr.mood+7,0,100);speak(choice([people[6],people[9]]),'Congratulations! But keep your desks clean!');cheer()}else{earn(15,'Simulated trade review.');speak(q,'Stop loss. Time to review the setup.',true);speak(choice([people[6],people[9]]),'No drama. File the report and carry on!')}}updatePanels()}
+// --- Pixel-art renderer. Everything is local: no image assets, libraries, or network calls. ---
+const art=document.createElement('canvas');art.width=W;art.height=H;const a=art.getContext('2d');a.imageSmoothingEnabled=false;
+function box(c,x,y,w,h,fill){c.fillStyle=fill;c.fillRect(Math.round(x),Math.round(y),Math.round(w),Math.round(h))}
+function line(c,x1,y1,x2,y2,col,width=1){c.strokeStyle=col;c.lineWidth=width;c.beginPath();c.moveTo(x1,y1);c.lineTo(x2,y2);c.stroke()}
+function round(c,x,y,w,h,r,color){c.fillStyle=color;c.beginPath();c.roundRect(x,y,w,h,r);c.fill()}
+function txt(c,text,x,y,size=12,color='#fff',weight=700,align='left'){c.font=`${weight} ${size}px ui-monospace,monospace`;c.textAlign=align;c.textBaseline='alphabetic';c.fillStyle=color;c.fillText(text,x,y)}
+function plant(c,x,y,s=1){c.save();c.translate(x,y);c.scale(s,s);box(c,-11,7,22,10,'#312e36');box(c,-9,4,18,14,'#c89068');box(c,-6,7,12,8,'#b8704b');let leaves=[[-7,-5],[-1,-13],[8,-10],[-10,-13],[4,-21],[12,-3],[-1,0]];leaves.forEach((v,i)=>{box(c,v[0]-4,v[1]-4,9,9,i%2?'#3d927d':'#4eaf7b');box(c,v[0]-2,v[1]-4,4,4,'#a4e49c')});c.restore()}
+function wallSign(c,x,y,w,label,accent='#74d6c3'){box(c,x,y,w,25,'#233e47');box(c,x+3,y+3,4,19,accent);txt(c,label,x+13,y+17,11,'#f2f3eb',800)}
+function picture(c,x,y,kind){box(c,x,y,57,42,'#b99162');box(c,x+4,y+4,49,34,'#2a5260');if(kind==='chart'){line(c,x+9,y+27,x+21,y+22,'#8ee6c5',3);line(c,x+21,y+22,x+34,y+28,'#8ee6c5',3);line(c,x+34,y+28,x+47,y+10,'#8ee6c5',3)}else{box(c,x+4,y+24,48,12,'#416b72');box(c,x+7,y+7,13,15,'#64b7bc');box(c,x+21,y+10,10,14,'#f7c97e');box(c,x+35,y+7,13,16,'#83bea0')}}
+function drawRoom(r){const {x,y,w,h}=r;box(a,x+5,y+10,w,h,'#132633');box(a,x,y,w,h,r.floor);for(let tx=x+11;tx<x+w-10;tx+=26){for(let ty=y+11;ty<y+h-12;ty+=26){let mix=((Math.floor(tx/26)+Math.floor(ty/26))%3);box(a,tx,ty,24,24,mix===0?r.pattern:r.floor);box(a,tx,ty,24,1,'#ffffff10')}}
+ box(a,x,y,w,9,r.wall);box(a,x,y,9,h,r.wall);box(a,x+w-9,y,9,h,r.wall);box(a,x,y+h-9,w,9,r.wall);
+ box(a,x+10,y+10,w-20,3,'#ffffff22');box(a,x+10,y+h-18,w-20,2,'#00000020');
+ // Open doorway and lay a bright, obvious wooden threshold.
+ let [side,d]=r.door;if(side==='bottom'){box(a,d-31,y+h-13,62,19,r.floor);box(a,d-33,y+h-9,66,3,'#c39a66')}else if(side==='top'){box(a,d-31,y-6,62,20,r.floor);box(a,d-33,y+6,66,3,'#c39a66')}else if(side==='left'){box(a,x-6,d-31,20,62,r.floor);box(a,x+4,d-33,3,66,'#c39a66')}
+ // A small brass number plaque and section label.
+ round(a,x+16,y+17,Math.min(w-30,r.label.length*8+28),25,3,'#243843');txt(a,r.label,x+26,y+34,11,'#f0e7d7',800);txt(a,r.badge,x+w-27,y+33,11,'#d9d0ad',800,'center')}
+function rug(c,x,y,w,h,color='#7590a1'){box(c,x+4,y+7,w,h,'#00000024');box(c,x,y,w,h,color);box(c,x+9,y+8,w-18,h-16,'#ffffff12');for(let i=12;i<w-12;i+=23)box(c,x+i,y+h-8,11,3,'#f8dfb533')}
+function desk(c,x,y,color='#b68c64',screen='#57a9ca',duo=true){box(c,x+7,y+12,153,73,'#172d38aa');box(c,x,y,153,71,'#6a4e44');box(c,x+4,y+4,145,57,color);box(c,x+8,y+8,136,6,'#d7ad84');
+ const monitor=(xx,ww)=>{box(c,xx,y+11,ww+6,36,'#1c303f');box(c,xx+4,y+15,ww-2,26,'#193b55');box(c,xx+7,y+18,ww-8,20,screen);box(c,xx+7,y+19,ww-8,5,'#8ddfdc33');for(let k=0;k<6;k++)box(c,xx+9+k*7,y+34-(k*5%11),3,3,k%2?'#c2f6e2':'#d4deff');box(c,xx+ww/2,y+47,7,5,'#293b4a')};
+ if(duo){monitor(x+15,47);monitor(x+80,47)}else monitor(x+48,54);
+ box(c,x+61,y+58,40,5,'#e8ccab');box(c,x+108,y+59,10,7,'#5a4a42');box(c,x+134,y+26,10,10,'#e8d5a2');box(c,x+137,y+24,5,4,'#fff4d6')}
+function chair(c,x,y,col='#416b80'){box(c,x-22,y-16,44,31,'#19313d88');box(c,x-20,y-17,40,14,col);box(c,x-17,y+4,34,26,'#2e4656');box(c,x-12,y+8,24,16,col);box(c,x-3,y+29,6,11,'#192c37')}
+function bookshelf(c,x,y){box(c,x,y,71,29,'#644638');box(c,x+4,y+4,63,22,'#9f724f');for(let i=0;i<10;i++)box(c,x+6+i*6,y+6,4,18,['#c5a0ad','#9bc7b9','#eed3a2','#88b8dc'][i%4])}
+function lamp(c,x,y){box(c,x-9,y+12,18,7,'#374b53');box(c,x-2,y-14,5,26,'#d0b77e');box(c,x-11,y-18,25,12,'#ecd69b');box(c,x-7,y-16,17,4,'#fdf4ca')}
+function bed(c,x,y){box(c,x+6,y+8,193,65,'#2d394c');box(c,x,y,193,65,'#b7a9b7');box(c,x+5,y+5,183,55,'#a3bed0');box(c,x+8,y+8,45,49,'#f0e7db');box(c,x+58,y+8,122,48,'#8196b6');box(c,x+60,y+10,117,8,'#b5c9e1')}
+function couch(c,x,y){box(c,x+3,y+8,161,71,'#38444e');box(c,x,y,161,64,'#426d75');box(c,x+8,y+11,145,40,'#75aaa7');box(c,x+9,y+15,43,32,'#87c4b3');box(c,x+59,y+15,43,32,'#87c4b3');box(c,x+110,y+15,43,32,'#87c4b3');box(c,x-5,y+12,18,42,'#3c646f');box(c,x+149,y+12,18,42,'#3c646f')}
+function rubbish(c,x,y){box(c,x+1,y+4,12,9,'#334352');box(c,x,y,11,10,'#e6c9a3');box(c,x+4,y-5,5,7,'#fff7e2');box(c,x+12,y+8,7,4,'#a0ba96')}
+function drawBase(){a.clearRect(0,0,W,H);box(a,0,0,W,H,'#101f2b');
+ // Soft, repeated exterior masonry tiles.
+ for(let x=0;x<W;x+=32)for(let y=0;y<H;y+=32){box(a,x+1,y+1,30,30,(Math.floor(x/32)+Math.floor(y/32))%2?'#1a303b':'#1d3540');box(a,x+2,y+2,2,2,'#ffffff05')}
+ box(a,19,19,1181,785,'#a6b6a0');box(a,24,24,1172,777,'#2a424b');
+ // The corridor between upper rooms and trading floor.
+ box(a,32,240,1148,75,'#69766e');for(let i=40;i<1180;i+=31){box(a,i,247,29,61,i%62?'#6e7d71':'#67766e');box(a,i+5,279,7,3,'#ffffff17')}
+ box(a,821,319,27,468,'#687a76');
+ rooms.forEach(drawRoom);
+ // Warm windows, paintings and detail in every room.
+ picture(a,51,70,'chart');plant(a,247,70,.85);rug(a,70,132,160,76,'#665953');desk(a,95,105,'#ad845d','#5ec1c0',false);chair(a,159,176,'#744b46');bookshelf(a,40,174);lamp(a,241,173);
+ box(a,475,64,56,29,'#a7baa2');txt(a,'POLICY',481,83,10,'#2b4b4b');rug(a,318,130,189,65,'#786a83');desk(a,337,103,'#b58d6a','#b2e1b7',false);chair(a,410,170,'#a06c87');bookshelf(a,290,60);plant(a,518,179,.9);box(a,488,113,39,15,'#496c76');box(a,491,116,33,8,'#a8d8d0');txt(a,'HR x2',488,139,10,'#ffebd3',800);
+ picture(a,760,65,'chart');rug(a,588,81,218,121,'#647d72');box(a,627,100,164,83,'#624f41');box(a,621,93,164,82,'#ac8562');box(a,629,101,148,66,'#b89570');for(let j=0;j<5;j++)box(a,642+j*25,113+(j%2)*25,17,12,j%2?'#e4d7b2':'#d7efdb');box(a,682,120,25,23,'#35525a');plant(a,578,70,.8);plant(a,819,182,.8);
+ box(a,883,71,244,58,'#735c43');box(a,896,73,231,49,'#c5a789');box(a,895,66,56,54,'#6c8182');box(a,903,72,39,32,'#a1ced0');box(a,961,76,33,38,'#595f6a');box(a,969,84,18,13,'#ffdb91');txt(a,'COFFEE',1004,85,12,'#6a543e');box(a,1012,92,16,15,'#ebd4b0');box(a,1064,91,45,22,'#a4c9b3');plant(a,1153,81,1);
+ box(a,1028,158,101,43,'#675241');box(a,1024,153,101,43,'#c1a17a');box(a,1050,160,16,13,'#f6e8cf');box(a,1083,161,17,13,'#f6e8cf');box(a,864,175,88,23,'#7d6048');txt(a,'BISCUITS',869,192,10,'#f3e5ca');
+ // Trading floor carpet and window bays.
+ rug(a,60,373,731,386,'#3c596a');for(let x=66;x<784;x+=60){box(a,x,345,40,12,'#254b59');box(a,x+4,347,32,6,'#64aebf');box(a,x,365,39,3,'#d7e6ce')}
+ deskCoords.forEach((d,i)=>{desk(a,d.x,d.y,['#ba936b','#bd9976','#ae8c69','#c4a17b','#b28e6d','#bb9770'][i],i%2?'#72cabb':'#6ab6d7');chair(a,d.x+77,d.y+94,['#3e8794','#75699f','#b98056','#4e9b7d','#bea067','#6382b8'][i]);
+ box(a,d.x+3,d.y-24,Math.min(140,18+roles[i][0].length*10),20,'#243a49');txt(a,roles[i][0],d.x+10,d.y-10,11,'#e7ecf1',800)});
+ plant(a,48,570,.85);plant(a,789,732,.95);plant(a,785,348,.85);box(a,53,348,210,18,'#344a58');txt(a,'6 ALGORITHMS · ONE OFFICE',62,361,10,'#9bd4ca');
+ // Rest room with distinct beds and soft ambient lamps.
+ rug(a,883,354,260,152,'#8e7a92');bed(a,921,378);lamp(a,1138,472);box(a,897,479,20,14,'#cca48a');box(a,1131,364,22,9,'#f6d0a1');plant(a,867,493,.75);
+ // Lounge: sofa, game console and snack cupboard.
+ rug(a,884,606,264,142,'#786f9d');couch(a,919,636);box(a,1107,639,39,40,'#695943');box(a,1112,643,31,33,'#bc986d');box(a,963,714,83,21,'#9e806a');box(a,972,721,30,5,'#e6d3b0');plant(a,1150,570,.85);picture(a,1097,576,'nature');
+ // Corridor notice signs and hanging plants.
+ for(let i of [205,580,947]){box(a,i,266,62,29,'#36565d');box(a,i+5,271,52,19,'#bfc8b1');txt(a,'ALGO',i+9,284,10,'#315057')}
+ for(let i of [71,325,608,800,1161])plant(a,i,270,.7);
+ // Expandable modern wing.
+ if(expanded){box(a,1200,20,336,783,'#88aba2');box(a,1209,28,320,755,'#536963');for(let xx=1223;xx<1520;xx+=24)for(let yy=39;yy<776;yy+=24)box(a,xx,yy,22,22,(Math.floor(xx/24)+Math.floor(yy/24))%2?'#658379':'#68877e');
+ box(a,1191,244,40,81,'#768877');wallSign(a,1230,52,170,'INNOVATION WING','#e5b985');rug(a,1230,85,274,178,'#597b73');desk(a,1280,111,'#b99874','#78ddcb');chair(a,1358,209,'#427c87');bookshelf(a,1432,100);plant(a,1499,239,1);
+ wallSign(a,1230,327,180,'CREATIVE GARDEN','#8ce7b3');rug(a,1248,362,255,143,'#688d7b');for(let i of [1274,1352,1438,1490])plant(a,i,406,1.2);box(a,1310,457,139,25,'#a9c59a');
+ wallSign(a,1230,561,185,'STAFF GAME CORNER','#d5b1ea');rug(a,1240,597,265,147,'#7b779b');box(a,1284,628,100,56,'#527f8b');box(a,1290,624,90,50,'#283a47');box(a,1302,631,65,33,'#65c2ce');box(a,1415,620,65,36,'#a27d79');txt(a,'ARCADE',1418,643,10,'#ffecc8');plant(a,1490,740,.9)
+ }else{box(a,1194,25,321,760,'#142633');box(a,1210,47,290,715,'#233947');for(let y=73;y<741;y+=28){line(a,1222,y,1488,y-28,'#36505a',2)}box(a,1264,310,200,116,'#182c39');txt(a,'NEW WING',1364,353,22,'#8ac5b4',900,'center');txt(a,'Unlock at 500 XP',1364,390,13,'#d8c8a5',700,'center')}
+ // Any player-placed decor is drawn above the floor.
+ for(let d of decor){if(d.type==='plant')plant(a,d.x,d.y,1.05);else if(d.type==='lamp')lamp(a,d.x,d.y);else if(d.type==='rug')rug(a,d.x-32,d.y-17,64,40,'#81789d')}
+ // Mild edge outline.
+ box(a,0,0,W,17,'#0d1c26');box(a,0,H-13,W,13,'#0d1c26');box(a,0,0,12,H,'#0d1c26');box(a,W-11,0,11,H,'#0d1c26');}
+// Characters have custom pixel body, footwear, walking gait and head silhouettes.
+function drawActor(c,p,now){let {x,y}=p,bob=p.walking?Math.sin(p.motion*2.2)*2:Math.sin(now*.0017+p.id)*.7;
+ c.save();c.translate(Math.round(x),Math.round(y+bob));c.globalAlpha=.3;c.fillStyle='#0b2630';c.beginPath();c.ellipse(0,3,17,6,0,0,Math.PI*2);c.fill();c.globalAlpha=1;
+ const walk=p.walking?Math.sin(p.motion*2.2)*5:0,gender=p.style==='hijab';
+ box(c,-11,0+walk,9,14,'#2b3c51');box(c,2,0-walk,9,14,'#2b3c51');box(c,-11,12+walk,9,4,'#182b35');box(c,2,12-walk,9,4,'#182b35');
+ box(c,-14,-29,28,30,p.color);box(c,-13,-25,4,23,'#ffffff26');box(c,10,-25,3,22,'#00000018');
+ box(c,-19,-25,6,20,p.style==='cleaner'?'#91ccb7':'#eac2a1');box(c,13,-25,6,20,p.style==='cleaner'?'#91ccb7':'#eac2a1');
+ if(p.style==='ceo'){box(c,-4,-27,8,25,'#eae0d3');box(c,-2,-24,4,12,'#f3b76d');box(c,-10,-33,20,4,'#21323b')}
+ if(p.style==='cleaner'){box(c,-11,-28,22,12,'#7bc9b2');box(c,-8,-20,16,13,'#f0f4df')}
+ // Hijab covers the hair, neck, ears, with a pointed drape around the shoulders.
+ if(gender){const veil=p.id===9?'#4e979b':'#b47f9e',veilDark=p.id===9?'#346c78':'#a16a8c';box(c,-14,-55,28,32,veil);box(c,-17,-35,34,16,veil);box(c,-11,-51,22,25,'#ffdfb5');box(c,-14,-52,6,24,veil);box(c,9,-53,5,26,veil);box(c,-7,-24,15,9,veilDark);box(c,-12,-50,4,7,p.id===9?'#b6f3e8':'#e5abc1');if(p.id===9){box(c,-10,-43,7,2,'#426773');box(c,3,-43,7,2,'#426773');box(c,-3,-43,6,1,'#426773')}}
+ else{box(c,-12,-53,24,27,'#f0caa2');box(c,-13,-55,26,10,p.style==='cleaner'?'#536b5c':p.style==='ceo'?'#393846':'#333b4f');box(c,-13,-48,5,9,'#454c57')}
+ box(c,-6,-40,3,3,'#253a48');box(c,4,-40,3,3,'#253a48');box(c,-1,-34,4,2,'#c17d78');
+ if(p.style==='hijab'){box(c,11,-20,12,17,'#ebd4a3');box(c,13,-18,8,4,'#427c73');box(c,15,-10,6,3,'#57725e')}
+ if(p.style==='cleaner'){box(c,17,-20,3,37,'#d1ae83');box(c,12,9,22,7,'#79b8bf');box(c,11,17,23,3,'#3c8795')}
+ if(p.style==='ceo'){box(c,-10,-56,20,5,'#efce75');box(c,-7,-60,5,8,'#f6d980');box(c,3,-60,5,8,'#f6d980')}
+ if(p.state==='☕ Coffee break'){box(c,18,-19,11,13,'#ead6ae');box(c,27,-16,5,8,'#e9d5b0');box(c,21,-24,5,4,'#ffffff98')}
+ if(p.state==='💤 Power nap'&&!p.walking){txt(c,'Z z',19,-66,12,'#dce5ff',800)}
+ if(p.trade){box(c,-17,-62,34,13,p.trade==='BUY'?'#3c86aa':'#b85f65');txt(c,p.trade,-0,-52,9,'#fff',900,'center')}
+ if(selected===p.id){c.strokeStyle='#e5dc94';c.lineWidth=2;c.strokeRect(-22,-66,44,83)}
+ // Engraved pixel nameplate to keep names legible on patterned floors.
+ const nameWidth=Math.max(48,p.name.length*8+16);box(c,-nameWidth/2,-78,nameWidth,17,'#132f3de8');box(c,-nameWidth/2,-78,3,17,p.color);txt(c,p.name,0,-65,10,'#eef7f9',800,'center');c.restore()}
+function speechBox(c,p){if(!p.speech||performance.now()>p.speechUntil)return;const s=p.speech,lines=[];const max=26;let words=s.split(' '),lineText='';for(let word of words){let tryLine=(lineText?lineText+' ':'')+word;if(tryLine.length>max&&lineText){lines.push(lineText);lineText=word}else lineText=tryLine}if(lineText)lines.push(lineText);let wide=clamp(Math.max(...lines.map(s=>s.length*7.4))+22,90,221),height=16+lines.length*17,x=clamp(p.x-wide/2,20,expanded?W-wide-25:1170-wide),y=p.y-95-height;
+ box(c,x+4,y+4,wide,height,'#152b32aa');box(c,x,y,wide,height,'#fff7e7');box(c,x,y,wide,4,p.color);box(c,Math.round(p.x-7),y+height,14,8,'#fff7e7');for(let i=0;i<lines.length;i++)txt(c,lines[i],x+10,y+21+i*16,11,'#314651',800)}
+function render(now){ctx.setTransform(dpr,0,0,dpr,0,0);box(ctx,0,0,screenW,screenH,'#12232c');
+ ctx.save();ctx.translate(screenW/2,screenH/2);ctx.scale(scale,scale);ctx.translate(-cx,-cy);ctx.drawImage(art,0,0);
+ // Screen shimmer, tiny computer activity lights.
+ for(let i=0;i<6;i++){const d=deskCoords[i];let color=people[i].trade==='BUY'?'#8bcaff':people[i].trade==='SELL'?'#f09b91':'#83e5c5';if(Math.floor(now/550+i)%2)box(ctx,d.x+10,d.y+10,6,4,color)}
+ for(let t of trash)rubbish(ctx,t.x,t.y);
+ people.slice().sort((a,b)=>a.y-b.y).forEach(p=>drawActor(ctx,p,now));
+ // Only up to four conversation bubbles are displayed concurrently, avoiding excessive overlap.
+ people.filter(p=>p.speechUntil>performance.now()).sort((a,b)=>b.speechUntil-a.speechUntil).slice(0,4).forEach(p=>speechBox(ctx,p));
+ if(atNight()){box(ctx,12,17,expanded?1530:1199,785,'#101d49a0');for(let i=0;i<6;i++){let d=deskCoords[i];if(people[i].state==='💻 Working')box(ctx,d.x+20,d.y+16,116,33,'#8ad8f01c')}for(let p of people)if(selected===p.id)box(ctx,p.x-18,p.y-57,36,70,'#e7e6b60d')}
+ if(decorMode){ctx.strokeStyle='#b0e3a2';ctx.lineWidth=4;ctx.strokeRect(36,331,780,447);if(expanded)ctx.strokeRect(1215,40,311,730)}
+ ctx.restore();}
+function navigate(p,dt){p.walking=false;if(!p.path.length)return;let dest=p.path[0],dx=dest[0]-p.x,dy=dest[1]-p.y,dist=Math.hypot(dx,dy),step=dt*0.065*timeScale;
+ if(dist<Math.max(3,step)){p.x=dest[0];p.y=dest[1];p.path.shift();if(!p.path.length){if(p.where==='clean'&&trash.length){let t=trash.sort((a,b)=>Math.hypot(a.x-p.x,a.y-p.y)-Math.hypot(b.x-p.x,b.y-p.y))[0];if(t&&Math.hypot(t.x-p.x,t.y-p.y)<85){trash.splice(trash.indexOf(t),1);cleanliness=clamp(cleanliness+11,0,100);earn(6,'Cleaner picked up rubbish.');speak(p,'Finally! A clean floor!')}}}}
+ else{p.x+=dx/dist*step;p.y+=dy/dist*step;p.dir=Math.abs(dx)>Math.abs(dy)?dx>0?'right':'left':dy>0?'down':'up';p.walking=true;p.motion+=dt*.011*timeScale}}
+function officeTick(dt){const dtSec=dt/1000*timeScale;tickCount+=dtSec;minute=(minute+dtSec*.38)%1440;night=atNight();meetingTimer=Math.max(0,meetingTimer-dtSec);cleanliness=clamp(cleanliness-dtSec*.004,2,100);
+ // Occasional office mess, and periodic 'gossip' and work routines.
+ for(let p of people){p.timer-=dtSec;if(p.id===7){p.energy=clamp(p.energy+(p.where==='nap'?dtSec*.7:-dtSec*.018),0,100)}else p.energy=clamp(p.energy+(p.where==='nap'&&!p.walking?dtSec*1.15:-dtSec*.036),0,100);
+ if(p.timer<=0&&!p.path.length)job(p);
+ navigate(p,dt);
+ if((p.id===6||p.id===9)&&p.energy<18&&!p.path.length){command(p,'nap');speak(p,'Even HR needs a break sometimes.')}
+ if(p.id<6&&p.energy<20&&!p.path.length)command(p,'nap');
+ }
+ if(Math.floor(tickCount/12)!==Math.floor((tickCount-dtSec)/12)){
+  let p=choice([people[6],people[9]]);talkRandom(p);if(Math.random()<.7){let q=choice(people.filter(x=>x.id!==p.id));speak(q,choice(dialogues[q.id]));}
+ }
+ if(Math.floor(tickCount/21)!==Math.floor((tickCount-dtSec)/21)){
+  let p=choice(people.filter(p=>p.id!==6&&p.id!==9));talkRandom(p);
+  if(Math.random()<.35){let t=choice([[990,290],[802,560],[1144,725],[703,275],[923,557],[1043,610],[226,557]]);trash.push({x:t[0]+rand(-12,12),y:t[1]+rand(-12,12)});trash=trash.slice(-10);cleanliness=clamp(cleanliness-5,0,100);news('Someone left a mess. Cleaner has been notified.','FACILITIES');if(Math.random()<.65){let h=choice([people[6],people[9]]);speak(h,choice(dialogues[h.id]),true)}}
+ }
+ if(Math.floor(tickCount/33)!==Math.floor((tickCount-dtSec)/33)){if(Math.random()<.72)hrDuoDrama(false)}
+ if(Math.floor(tickCount/47)!==Math.floor((tickCount-dtSec)/47)){earn(18,'Office teamwork bonus.');if(Math.random()<.55)news('The whole office is buzzing with activity.','OFFICE')}
+ if(Math.floor(tickCount/9)!==Math.floor((tickCount-dtSec)/9))updatePanels();}
+function resize(){const b=stage.getBoundingClientRect();screenW=Math.max(100,b.width);screenH=Math.max(100,b.height);dpr=Math.min(2,window.devicePixelRatio||1);canvas.width=Math.round(screenW*dpr);canvas.height=Math.round(screenH*dpr);canvas.style.width=screenW+'px';canvas.style.height=screenH+'px';ctx.imageSmoothingEnabled=false;if(!resize.initial){fitCamera();resize.initial=true}}
+function fitCamera(){let w=expanded?1524:1192,h=798;const mobile=screenW<570;if(mobile){scale=Math.min((screenW-22)/825,(screenH-28)/750);cx=430;cy=406}else{scale=Math.min((screenW-30)/w,(screenH-30)/h);cx=w/2+14;cy=406}restrictCamera()}
+function restrictCamera(){const ww=expanded?W:1204;let spanX=screenW/(2*scale),spanY=screenH/(2*scale);cx=clamp(cx,Math.min(spanX,ww/2),Math.max(ww-spanX,ww/2));cy=clamp(cy,Math.min(spanY,H/2),Math.max(H-spanY,H/2))}
+function focus(x,y,animate=false){cx=x;cy=y;restrictCamera();if(animate)toast('Employee selected · drag to explore office')}
+function mouseToWorld(px,py){return [(px-screenW/2)/scale+cx,(py-screenH/2)/scale+cy]}
+function zoom(f,px=screenW/2,py=screenH/2){const before=mouseToWorld(px,py);scale=clamp(scale*f,.24,2.25);const after=mouseToWorld(px,py);cx+=before[0]-after[0];cy+=before[1]-after[1];restrictCamera()}
+let downPos=null;
+canvas.addEventListener('pointerdown',e=>{canvas.setPointerCapture(e.pointerId);pointers.set(e.pointerId,{x:e.offsetX,y:e.offsetY});if(pointers.size===1){dragStart={x:e.offsetX,y:e.offsetY,cx,cy};downPos={x:e.offsetX,y:e.offsetY};gesture=null}else if(pointers.size===2){let pts=[...pointers.values()];gesture={dist:Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y),scale};dragStart=null;downPos=null}});
+canvas.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;pointers.set(e.pointerId,{x:e.offsetX,y:e.offsetY});if(pointers.size===2&&gesture){let pts=[...pointers.values()];let dist=Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y);if(dist>20){let newScale=clamp(gesture.scale*dist/Math.max(20,gesture.dist),.24,2.25);let midpoint=[(pts[0].x+pts[1].x)/2,(pts[0].y+pts[1].y)/2];zoom(newScale/scale,...midpoint)}}else if(pointers.size===1&&dragStart){cx=dragStart.cx-(e.offsetX-dragStart.x)/scale;cy=dragStart.cy-(e.offsetY-dragStart.y)/scale;restrictCamera()}});
+canvas.addEventListener('pointerup',e=>{const pt=pointers.get(e.pointerId);pointers.delete(e.pointerId);if(pointers.size===0&&downPos&&pt&&Math.hypot(pt.x-downPos.x,pt.y-downPos.y)<8){handleTap(...mouseToWorld(pt.x,pt.y))}if(pointers.size<2)gesture=null;dragStart=null;downPos=null});
+canvas.addEventListener('pointercancel',e=>{pointers.delete(e.pointerId);dragStart=null;downPos=null;gesture=null});
+canvas.addEventListener('wheel',e=>{e.preventDefault();zoom(e.deltaY>0?.89:1.12,e.offsetX,e.offsetY)},{passive:false});
+function handleTap(x,y){if(decorMode){addDecor(x,y);return}let near=people.map(p=>({p,d:Math.hypot(p.x-x,p.y-23)})).sort((a,b)=>a.d-b.d)[0];if(near&&near.d<53){select(near.p);speak(near.p,choice(dialogues[near.p.id]),true);return}let j=deskCoords.findIndex(d=>x>=d.x&&x<=d.x+152&&y>=d.y&&y<=d.y+74);if(j>=0){select(people[j]);return}if(x>280&&x<548&&y<232){let hr=x<414?people[6]:people[9];select(hr);speak(hr,choice(dialogues[hr.id]),true)}}
+function addDecor(x,y){const prices={plant:30,lamp:40,rug:55};if(x>1194&&!expanded){toast('Unlock the expansion before decorating here.');return}let r=(decorType==='rug'?24:18);if(!navigable(x,y)||furniture.some(f=>x>f.x-35&&x<f.x+f.w+35&&y>f.y-35&&y<f.y+f.h+35)){toast('This spot is occupied. Choose a clear tile.');return}if(x<32||y<32||y>780){toast('Place your decor inside the office.');return}if(xp<prices[decorType]){toast('Not enough Office XP. Try a simulated TP!');return}xp-=prices[decorType];decor.push({x:Math.round(x),y:Math.round(y),type:decorType});persist();rebuildNav();drawBase();updatePanels();toast('Decoration placed! Looking good, CEO.');news('CEO upgraded the office interior.','DESIGN')}
+function setDecor(type){decorType=type;document.querySelectorAll('[data-decor]').forEach(b=>b.classList.toggle('sel',b.dataset.decor===type));if(!decorMode){decorMode=true;el('decorToggle').classList.add('on');el('decorToggle').textContent='🛠 Decorate Mode: ON';toast('Tap a clear spot inside the office to place decoration.')}}
+function officeMeeting(){meetingTimer=27;people.forEach((p,i)=>{command(p,'meeting');p.timer=25+i%3});speak(people[6],'Everyone, meeting room. RIGHT NOW!',true);setTimeout(()=>speak(people[9],'And bring your attendance sheets! NO EXCUSES!',true),1200);news('Nuha and Adawiah called an all-hands HR meeting.','HR');toast('NUHA & ADAWIAH CALLED A TEAM MEETING 📣')}
+const hrPairs=[[6,'Adawiah, did you check attendance?','Twice, Nuha! APEX was late for coffee again!'],[6,'Who made this pantry mess?!','I have a list of suspects, Nuha!'],[9,'Nuha, we need an urgent meeting.','Every meeting is urgent in this office!'],[9,'Staff are gossiping again!','Adawiah, tell them to focus on their desks!'],[6,'Did anyone submit their leave forms?','Not a single one, Nuha. I am going to lecture them!'],[9,'The cleaner needs more help!','Exactly, Adawiah! Everyone clean your mugs!'],[6,'Where is the CEO right now?','Probably hiding from our HR meeting!']];
+function hrDuoDrama(manual=true){const pair=choice(hrPairs),a=people[pair[0]],b=people[pair[0]===6?9:6];const venue=choice(['hr','hr','pantry','meeting']);command(a,venue);command(b,venue);speak(a,pair[1],true);setTimeout(()=>speak(b,pair[2],true),1400);if(manual){earn(8,'HR teamwork and office chatter.');toast('🧕🧕 HR DUO DRAMA!')}else news('HR managers Nuha and Adawiah are debating office discipline.','HR')}
+function officeGossip(){let a=choice(people),b=choice(people.filter(p=>p!==a));speak(a,choice(dialogues[a.id]),true);setTimeout(()=>{speak(b,choice(dialogues[b.id]),true)},850);a.mood=clamp(a.mood+3,0,100);b.mood=clamp(b.mood+4,0,100);earn(8,'Office social moment.');updatePanels()}
+function doExpand(){if(expanded){toast('Level 2 is already unlocked!');return}if(xp<500){toast(`Need ${500-xp} more XP. Simulate a few TP events to test expansion.`);return}xp-=500;expanded=true;persist();rebuildNav();drawBase();fitCamera();updatePanels();news('The new Innovation Wing is officially OPEN!','OFFICE');speak(people[6],'New wing unlocked! KEEP IT CLEAN!',true);speak(people[9],'No littering in our new wing!',true);toast('🎉 NEW OFFICE WING UNLOCKED!')}
+function bind(){el('day').onclick=()=>{minute=9*60+15;toast('☀️ Welcome to day shift!')};el('night').onclick=()=>{minute=21*60;toast('🌙 Night shift lights activated!')};el('buy').onclick=()=>simTrade('BUY');el('sell').onclick=()=>simTrade('SELL');el('tp').onclick=()=>simTrade('TP');el('sl').onclick=()=>simTrade('SL');el('meeting').onclick=officeMeeting;el('hrDuo').onclick=()=>hrDuoDrama(true);el('allTalk').onclick=officeGossip;el('expansion').onclick=doExpand;el('speed').onclick=()=>{timeScale=timeScale===1?2:timeScale===2?4:1;el('speed').textContent='⏩ '+timeScale+'× Speed';toast('Office time speed: '+timeScale+'×')};el('resetCamera').onclick=fitCamera;el('zoomIn').onclick=()=>zoom(1.2);el('zoomOut').onclick=()=>zoom(.83);el('decorToggle').onclick=()=>{decorMode=!decorMode;el('decorToggle').classList.toggle('on',decorMode);el('decorToggle').textContent='🛠 Decorate Mode: '+(decorMode?'ON':'OFF')};document.querySelectorAll('[data-decor]').forEach(b=>b.addEventListener('click',()=>setDecor(b.dataset.decor)))}
+// =================== GEN 2.4 · 2D: LIVING OFFICE SYSTEM ===================
+// All P/L figures in this phase are invented game data. Live MT5 trading is NOT connected.
+const pKey='algoforge_gen22_demo_performance',relKey='algoforge_gen22_relationships';
+const monthKey=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')};
+let month=monthKey(),perfRaw={};try{perfRaw=JSON.parse(localStorage.getItem(pKey)||'{}')}catch(_){}
+let perf=Array.from({length:6},(_,i)=>{const v=perfRaw.month===month&&perfRaw.traders&&perfRaw.traders[i]?perfRaw.traders[i]:{};return {net:Number(v.net)||0, gross:Number(v.gross)||0, fees:Number(v.fees)||0, wins:Number(v.wins)||0,losses:Number(v.losses)||0,trades:Number(v.trades)||0}});
+let bonds={};try{bonds=JSON.parse(localStorage.getItem(relKey)||'{}')||{}}catch(_){}
+const traits=[
+ 'Focused · competitive · coffee addict','Patient · organized · analytical','Observant · suspicious of fake breakouts',
+ 'Fast thinker · playful · hyperactive','Perfectionist · snack hunter','Quiet · clever · always curious',
+ 'Strict · caring · very talkative','Hardworking · sarcastic · tidy','Calm · supportive · optimistic',
+ 'Talkative · firm · loves office rules','Alert · friendly · night owl','Sleepy · mischievous · loves treats'
+];
+people[10].where='gate';people[10].state='🛡️ Security patrol';
+people[11].where='pet';people[11].state='🐈 Cat exploring';people[11].energy=95;
+const savePerf=()=>{try{localStorage.setItem(pKey,JSON.stringify({month,traders:perf}))}catch(_){}};
+const saveBonds=()=>{try{localStorage.setItem(relKey,JSON.stringify(bonds))}catch(_){}};
+function clearMonthIfNeeded(){if(month===monthKey())return;month=monthKey();perf=Array.from({length:6},()=>({net:0,gross:0,fees:0,wins:0,losses:0,trades:0}));savePerf();news('New month, fresh Employee of the Month leaderboard!','HR')}
+function money(v){return (v<0?'−':'')+'$'+Math.abs(v).toFixed(2)}
+function earnTrade(p,kind){const gross=kind==='TP'?rand(12,34):-rand(7,22),fee=-rand(.09,.59),swap=-rand(0,.16);
+ const net=Math.round((gross+fee+swap)*100)/100,stat=perf[p.id];stat.net=Math.round((stat.net+net)*100)/100;stat.gross=Math.round((stat.gross+gross)*100)/100;stat.fees=Math.round((stat.fees+fee+swap)*100)/100;
+ stat.trades++;if(net>=0)stat.wins++;else stat.losses++;savePerf();return net}
+function ranked(){return people.slice(0,6).map((p,i)=>({p, ...perf[i]})).sort((a,b)=>(b.trades>0)-(a.trades>0)||b.net-a.net||a.p.id-b.p.id)}
+function renderLeaderboard(){const rankedList=ranked(),eligible=rankedList.filter(x=>x.trades>0),best=eligible[0],worst=eligible[eligible.length-1];
+ el('topWorker').innerHTML=best?'<small>🏆 EMPLOYEE OF THE MONTH · DEMO</small><b>'+escapeHtml(best.p.name)+' · '+money(best.net)+'</b>':'<small>🏆 EMPLOYEE OF THE MONTH</small><b>Awaiting closed demo trades</b>';
+ el('leaderboard').innerHTML=rankedList.map((r,i)=>'<div class="rank-row"><span class="rank-no '+(i===0&&r.trades?'gold':'')+'">'+(r.trades?(i===0?'👑':('#'+(i+1))):'—')+'</span><span class="rank-name">'+escapeHtml(r.p.name)+'</span><span class="rank-pnl '+(r.trades?(r.net>0?'win':r.net<0?'loss':'zero'):'zero')+'">'+(r.trades?money(r.net):'No trades')+'</span></div>').join('');
+ el('bottomWorker').innerHTML=eligible.length>1?'<b>📋 Lowest performer:</b> '+escapeHtml(worst.p.name)+' · '+money(worst.net)+'<br>Based on <b>closed demo net P/L</b> only; not a judgment of trading quality.':'Ranking starts after closed demo trades. Untraded EAs stay unranked. Data resets each calendar month.';
+}
+function makeKey(a,b){return Math.min(a,b)+'|'+Math.max(a,b)}
+function bondValue(a,b){return Number(bonds[makeKey(a,b)]||0)}
+function addBond(a,b,n){const key=makeKey(a.id,b.id);bonds[key]=clamp((bonds[key]||0)+n,0,100);saveBonds();a.mood=clamp(a.mood+n*.28,0,100);b.mood=clamp(b.mood+n*.28,0,100)}
+function bestFriend(p){const candidates=people.filter(x=>x!==p).sort((a,b)=>bondValue(p.id,b.id)-bondValue(p.id,a.id));const b=candidates[0];return b&&bondValue(p.id,b.id)>0?b.name+' ('+Math.round(bondValue(p.id,b.id))+' bond)':'Still getting to know the team'}
+const chatPairs=[
+ {a:6,b:9,words:['Adawiah, I need the attendance report before lunch!','Nuha, I sent it TWICE! Check your inbox!']},
+ {a:9,b:6,words:['Who approved a third coffee break?!','I did, Adawiah. HR needs coffee too!']},
+ {a:0,b:1,words:['NOVA, is that my coffee?','Our coffee, APEX. Teamwork!']},
+ {a:2,b:3,words:['That zone looks interesting.','Wait for confirmation first!']},
+ {a:4,b:5,words:['Did you finish the market report?','Right after I finish this biscuit.']},
+ {a:7,b:11,words:['Mochi, not on my clean floor again!','Meow! I own the floor.']},
+ {a:10,b:7,words:['Security patrol done. Everything safe.','Great. Please protect my cleaning supplies!']},
+ {a:8,b:6,words:['Nuha, any updates from HR?','CEO, I have a FOUR-PAGE report ready!']},
+ {a:9,b:10,words:['Why is the lobby so noisy?!','It was the cat, ma’am. Again.']},
+ {a:8,b:11,words:['Mochi, did you sleep on my desk?','Prrrr. Of course, boss.']},
+ {a:6,b:0,words:['APEX! Where is your attendance form?','I was analyzing the chart, I promise!']},
+ {a:9,b:2,words:['RBR DBD! Stop leaving mugs everywhere!','Sorry, Adawiah. The market was moving!']},
+ {a:1,b:4,words:['Who ate the last biscuit?','I can neither confirm nor deny.']}
+];
+let conversationCooldown=13,randomEventCooldown=32,ambientMeetingCooldown=91,worldDay=0,meetingsToday=new Set(),eventStatus='',eventRemaining=0;
+function socialChat(){let pair=choice(chatPairs),a=people[pair.a],b=people[pair.b];
+ if(Math.random()<.42){const close=people.filter(p=>p!==a&&Math.hypot(p.x-a.x,p.y-a.y)<220);if(close.length){b=choice(close);pair={a:a.id,b:b.id,words:[choice(dialogues[a.id]),choice(dialogues[b.id])]}}}
+ const venue=Math.random()<.45?'pantry':Math.random()<.5?'lounge':'meeting';
+ if(Math.hypot(a.x-b.x,a.y-b.y)>180){command(a,venue);command(b,venue)}
+ speak(a,pair.words[0],true);setTimeout(()=>{speak(b,pair.words[1],true);addBond(a,b,rand(2,7));updatePanels()},1650);
+ news(a.name+' started a conversation with '+b.name+'.','SOCIAL')
+}
+const eventIdeas=[
+ {name:'☕ COFFEE MACHINE DRAMA',line:'Coffee machine is acting up! Everyone stay calm!',npc:9,impact:-2},
+ {name:'🎈 SURPRISE OFFICE PARTY',line:'Surprise! Cake for everyone!',npc:8,impact:8},
+ {name:'🖨️ PRINTER JAM',line:'WHO printed 97 pages?!',npc:6,impact:-2},
+ {name:'🐈 CAT UNDER THE DESK',line:'Meow! Found your keyboard!',npc:11,impact:4},
+ {name:'🧹 PANTRY INSPECTION',line:'I JUST cleaned this pantry!',npc:7,impact:-3},
+ {name:'🛡️ SECURITY CHECK',line:'Office is secure. Please show your badge!',npc:10,impact:2},
+ {name:'📣 HR WELLNESS DAY',line:'Everyone, go stretch and drink some water!',npc:9,impact:7},
+ {name:'🍪 MISSING BISCUIT CASE',line:'I demand a biscuit investigation!',npc:6,impact:3}
+];
+function randomEvent(manual=false){let ev=choice(eventIdeas);eventStatus=ev.name;eventRemaining=35;
+ let speaker=people[ev.npc];speak(speaker,ev.line,true);
+ if(ev.name.includes('CAT')){command(people[11],'lounge');command(people[7],'clean')}
+ else if(ev.name.includes('PANTRY')||ev.name.includes('COFFEE')){command(people[7],'pantry');command(people[6],'pantry');command(people[9],'pantry')}
+ else if(ev.name.includes('WELLNESS')){people.slice(0,6).filter(p=>!p.trade).forEach(p=>command(p,'lounge'))}
+ else if(ev.name.includes('SECURITY'))command(people[10],'gate');
+ for(const p of people)p.mood=clamp(p.mood+ev.impact,0,100);
+ news(ev.name+' — '+ev.line,'OFFICE EVENT');if(manual)toast(ev.name+'!')
+}
+function scheduleName(){const m=minute;return m>=8*60&&m<9*60?'Arrival':m>=9*60&&m<10.5*60?'Market Focus':m>=10.5*60&&m<11*60?'Coffee Break':m>=11*60&&m<12.5*60?'Trading':m>=12.5*60&&m<13.5*60?'Lunch':m>=13.5*60&&m<16.5*60?'Market Focus':m>=16.5*60&&m<18*60?'HR Reviews':m>=18*60&&m<22*60?'Evening Shift':'Night Shift'}
+function updateSchedule(){const label=scheduleName(),slots=[['08:00','Arrivals'],['10:30','Coffee'],['12:30','Lunch'],['16:30','HR Review']];
+ el('scheduleStrip').innerHTML=slots.map(([t,n])=>'<div class="schedule-chip '+(label.toLowerCase().includes(n.toLowerCase().split(' ')[0])?'active':'')+'"><strong>'+t+'</strong><small>'+n+'</small></div>').join('');
+ el('scheduleCurrent').textContent='🗓️ '+fmt()+' · '+label+' · '+(eventRemaining>0?eventStatus:'Office running on auto-pilot');
+ const all=Object.keys(bonds).map(k=>({pair:k,value:bonds[k]})).sort((a,b)=>b.value-a.value);const top=all[0];
+ el('socialStatus').innerHTML=top?'<b>💬 Closest colleagues:</b> '+escapeHtml(people[+top.pair.split('|')[0]].name)+' & '+escapeHtml(people[+top.pair.split('|')[1]].name)+' · '+Math.round(top.value)+'/100 friendship':'💬 Friendships develop as staff talk and interact.';
+}
+// Preserve every existing feature from GEN 2.1 while improving autonomous routines.
+const __gen21Job=job;
+job=function(p){if(meetingTimer>0){command(p,'meeting');return}
+ if(p.id===10){command(p,choice(atNight()?['gate','gate','gate','meeting']:['gate','gate','pantry','lounge']));return}
+ if(p.id===11){command(p,choice(['pet','pet','lounge','pantry','nap']));return}
+ if(p.id===7){command(p,trash.length?'clean':choice(atNight()?['clean','clean','pantry','lounge']:['clean','pantry','lounge','clean']));return}
+ if(p.id===6||p.id===9){command(p,choice(scheduleName()==='HR Reviews'?['meeting','hr','meeting']:['hr','hr','pantry','meeting','lounge']));return}
+ if(p.id===8){command(p,choice(['ceo','ceo','meeting','pantry','lounge']));return}
+ if(p.id<6){const session=scheduleName();let dest;if(p.trade)dest='desk';else if(p.energy<24)dest='nap';else if(session==='Coffee Break')dest=choice(['pantry','pantry','lounge']);else if(session==='Lunch')dest=choice(['pantry','pantry','lounge']);else if(session==='Night Shift')dest=choice(['desk','nap','lounge','nap']);else if(session==='HR Reviews')dest=choice(['meeting','desk','lounge']);else dest=choice(['desk','desk','desk','desk','pantry','meeting']);command(p,dest);return}
+ __gen21Job(p)
+};
+function awardVisual(c,p){if(p.id>=6)return;const top=ranked().filter(x=>x.trades>0)[0];if(top&&top.p.id===p.id){const x=Math.round(p.x),y=Math.round(p.y)-92;box(c,x-10,y,20,15,'#e6ba63');box(c,x-7,y-5,4,9,'#ffde8c');box(c,x-1,y-8,5,12,'#ffde8c');box(c,x+6,y-5,4,9,'#ffde8c');box(c,x-10,y+11,20,5,'#f7d88c')}}
+const __gen21DrawActor=drawActor;
+drawActor=function(c,p,now){if(p.id===11){drawOfficeCat(c,p,now);return}__gen21DrawActor(c,p,now);if(p.id===10){const x=Math.round(p.x),y=Math.round(p.y);box(c,x-4,y-27,9,12,'#ffdb8d');box(c,x-3,y-25,6,3,'#183e53');box(c,x-12,y-54,24,5,'#1c3f61');box(c,x-8,y-58,16,6,'#3e82aa')}awardVisual(c,p)};
+function drawOfficeCat(c,p,now){const x=Math.round(p.x),y=Math.round(p.y),bob=p.walking?Math.sin(p.motion*2.2)*1.8:0;c.save();c.translate(x,Math.round(y+bob));
+ c.globalAlpha=.3;c.fillStyle='#14232f';c.beginPath();c.ellipse(0,4,22,6,0,0,Math.PI*2);c.fill();c.globalAlpha=1;
+ const col='#f1cb96',shade='#c99067';box(c,-21,-11,33,17,col);box(c,8,-24,25,24,col);box(c,8,-33,8,12,shade);box(c,23,-33,8,12,shade);box(c,11,-27,5,10,col);box(c,25,-27,5,10,col);
+ box(c,12,-15,4,3,'#273f4d');box(c,26,-15,4,3,'#273f4d');box(c,20,-10,4,3,'#e58a8b');box(c,0,0,8,7,shade);box(c,-15,0,8,7,shade);
+ // Animated curved tail and tiny collar.
+ box(c,-25,-25,7,18,shade);box(c,-28,-27,9,7,col);box(c,7,-8,6,5,'#52a79d');box(c,10,-6,3,3,'#ffe18b');
+ if(p.where==='nap'&&!p.walking){txt(c,'zZ',34,-22,14,'#eff8fc',900)}
+ if(selected===p.id){c.strokeStyle='#f3d47f';c.lineWidth=2;c.strokeRect(-34,-39,75,53)}
+ const ww=64;box(c,-ww/2,-54,ww,17,'#132f3de8');box(c,-ww/2,-54,3,17,p.color);txt(c,'MOCHI',0,-42,10,'#fff',900,'center');c.restore()}
+const __gen21DrawBase=drawBase;
+drawBase=function(){__gen21DrawBase();const c=a;
+ // Distinct entrance/security station and pet nook, with small finishing touches.
+ box(c,1090,254,97,47,'#3e5662');box(c,1096,260,85,34,'#7095a4');box(c,1102,263,72,27,'#b3beb4');txt(c,'SECURITY',1111,280,10,'#304958',900);box(c,1156,284,14,7,'#d59f63');
+ box(c,1087,720,68,21,'#365c63');box(c,1090,718,63,18,'#a4c4b5');box(c,1100,722,20,11,'#cfddc9');txt(c,'CAT',1124,731,9,'#365b5b',900);
+ plant(c,1093,536,.6);plant(c,1157,561,.6);box(c,840,263,12,32,'#b9c8b1');txt(c,'←',841,286,13,'#32535a',900);
+};
+const __gen21Meeting=officeMeeting;
+officeMeeting=function(){if(meetingTimer>0)return;__gen21Meeting();news('Staff are heading to the conference room to discuss performance and welfare.','MEETING');
+ setTimeout(()=>{if(meetingTimer>0){speak(people[8],'Team, let us review this week. Thank you everyone!',true);speak(choice(people.slice(0,6)),'Can we discuss coffee budget too?')}},4400);
+ setTimeout(()=>{if(meetingTimer>0){speak(people[6],'Keep it professional, please!',true);speak(people[9],'And everyone sign the attendance sheet!',true)}},12500)
+};
+const __gen21SimTrade=simTrade;
+simTrade=function(kind){let trader=selected<6?people[selected]:choice(people.slice(0,6));if(kind==='BUY'||kind==='SELL'){trader.trade=kind;command(trader,'desk');speak(trader,kind==='BUY'?'Demo BUY signal — monitoring closely.':'Demo SELL signal — monitoring closely.',true);news(trader.name+' opened a fictional '+kind+' trade.','DEMO TRADE');toast('DEMO '+kind+' · '+trader.name);updatePanels();return}
+ let open=people.slice(0,6).filter(p=>p.trade);let p=(selected<6&&people[selected].trade)?people[selected]:(open.length?choice(open):trader);p.trade=null;command(p,'desk');let amount=earnTrade(p,kind);
+ if(kind==='TP'){earn(120,'Demo TP for '+p.name+'.');speak(p,'Profit booked! '+money(amount)+' in our demo!',true);cheer();speak(people[6],'Good work! Now clean your desks!',true)}
+ else{earn(15,'Demo trade review for '+p.name+'.');speak(p,'Demo loss '+money(amount)+'. Reviewing the setup.',true);speak(people[9],'A loss means we REVIEW, not panic!',true)}
+ news(p.name+' booked '+money(amount)+' fictional closed net P/L.','DEMO P/L');
+ const participants=ranked().filter(x=>x.trades>0);if(participants.length>1){const leader=participants[0],last=participants[participants.length-1];
+ speak(people[6],leader.p.name+' is our top trader this month!',true);
+ setTimeout(()=>speak(people[9],last.p.name+', come see HR for a performance review!',true),1650)}
+ updatePanels()
+};
+const __gen21Update=updatePanels;
+updatePanels=function(){__gen21Update();renderLeaderboard();updateSchedule();const p=people[selected];if(p){const rank=selected<6?perf[selected]:null;
+ el('inspector').insertAdjacentHTML('beforeend','<div class="relationship"><b>Personality:</b> '+escapeHtml(traits[p.id])+'<br><b>Closest colleague:</b> '+escapeHtml(bestFriend(p))+(rank?'<br><b>Monthly demo net:</b> '+money(rank.net)+' ('+rank.trades+' closed)':'')+'</div>')}
+};
+const __gen21Start=start;
+start=function(){__gen21Start();news('Security guard and Mochi the office cat joined the team!','SYSTEM');news('Monthly demo leaderboard is ready; no MT5 connected.','PERFORMANCE');for(const p of [people[10],people[11]]){p.timer=1;command(p,p.id===10?'gate':'pet')}renderLeaderboard();updateSchedule()};
+// Update scheduler, random events, conversations, scorekeeping UI without changing EA signals.
+const __gen21OfficeTick=officeTick;
+officeTick=function(dt){const oldMinute=minute,prevMeeting=meetingTimer;__gen21OfficeTick(dt);
+ const ds=dt/1000*timeScale;conversationCooldown-=ds;randomEventCooldown-=ds;ambientMeetingCooldown-=ds;eventRemaining=Math.max(0,eventRemaining-ds);
+ if(minute<oldMinute){worldDay++;meetingsToday=new Set()}
+ if(conversationCooldown<=0){conversationCooldown=rand(15,27);socialChat()}
+ if(randomEventCooldown<=0){randomEventCooldown=rand(38,62);randomEvent(false)}
+ if(ambientMeetingCooldown<=0&&meetingTimer<=0){ambientMeetingCooldown=rand(105,155);officeMeeting()}
+ // Scheduled meeting checkpoints use simulated clock, with day-based deduplication.
+ for(const v of [9*60+15,16*60+30]){const k=worldDay+':'+v;if(oldMinute<=v&&minute>v&&!meetingsToday.has(k)){meetingsToday.add(k);if(meetingTimer<=0)officeMeeting()}}
+ if(prevMeeting>0&&meetingTimer<=0){news('Meeting concluded. Everyone returned to their normal routine.','MEETING');for(let p of people){p.timer=.5}}
+ if(Math.floor(tickCount/9)!==Math.floor((tickCount-ds)/9))clearMonthIfNeeded()
+};
+function generateDemoWeek(){const results=[];for(let i=0;i<6;i++){let p=people[i];for(let j=0;j<3;j++){let v=earnTrade(p,Math.random()<(.42+i*.065)?'TP':'SL');results.push(v)} }news('Six traders completed a fictional demo week. Rankings updated.','DEMO RESULTS');speak(people[6],'I want the monthly performance report NOW!',true);speak(people[9],'Good. Now I can rank the employees!',true);toast('🏆 DEMO PERFORMANCE GENERATED · NOT REAL MT5');updatePanels()}
+function resetDemoScores(){if(!confirm('Reset this month\'s simulated performance ranking? Office XP and layout will stay.'))return;perf=Array.from({length:6},()=>({net:0,gross:0,fees:0,wins:0,losses:0,trades:0}));savePerf();news('Monthly demo leaderboard was reset by CEO.','PERFORMANCE');updatePanels();toast('Demo P/L rankings cleared')}
+const __gen21Bind=bind;
+bind=function(){__gen21Bind();el('officeEvent').onclick=()=>randomEvent(true);el('demoWeek').onclick=generateDemoWeek;el('clearRanks').onclick=resetDemoScores};
+// ================= END GEN 2.4 · 2D LIVING OFFICE =========================
+
+// GEN 2.4 — PURE TWO-DIMENSIONAL, TOP-DOWN INTERIOR. All simulation modules are preserved.
+// Intentional: no isometric transform, no walls with elevation, no 3D extrusion.
+const originalBase2D = drawBase;
+function line2d(c,x1,y1,x2,y2,color,width=2){c.strokeStyle=color;c.lineWidth=width;c.beginPath();c.moveTo(Math.round(x1)+.5,Math.round(y1)+.5);c.lineTo(Math.round(x2)+.5,Math.round(y2)+.5);c.stroke()}
+function b2d(c,x,y,w,h,fill){box(c,x,y,w,h,fill)}
+function rr2d(c,x,y,w,h,r,fill){c.fillStyle=fill;c.beginPath();c.roundRect(x,y,w,h,r);c.fill()}
+function glass2d(c,x1,y1,x2,y2,door,orientation='h'){
+  // Slim blue-tinted glass partitions with real gaps at doors: top-down, NOT 3D.
+  const seg=(a,b)=>{
+    if(orientation==='h'){
+      b2d(c,a,y1,b-a,10,'#192e38');b2d(c,a+2,y1+2,b-a-4,5,'#96c9d1');
+      b2d(c,a+4,y1+3,b-a-8,2,'#d9f1e9');
+      for(let xx=a+16;xx<b-10;xx+=83)b2d(c,xx,y1+1,4,8,'#445c64');
+    } else {
+      b2d(c,x1,a,10,b-a,'#182f39');b2d(c,x1+2,a+2,5,b-a-4,'#8abdc4');
+      b2d(c,x1+4,a+6,2,b-a-12,'#d5eee8');
+      for(let yy=a+16;yy<b-10;yy+=83)b2d(c,x1+1,yy,8,4,'#445c64');
+    }
+  };
+  if(orientation==='h'){if(door){seg(x1,door-34);seg(door+34,x2)}else seg(x1,x2)}
+  else{if(door){seg(y1,door-34);seg(door+34,y2)}else seg(y1,y2)}
+}
+function slickPlanter(c,x,y){
+ rr2d(c,x-14,y-10,28,24,3,'#283945');rr2d(c,x-12,y-11,24,20,3,'#d6c4a4');
+ rr2d(c,x-9,y-8,18,14,3,'#544d43');
+ for(let k=0;k<7;k++) {let a=k*2.39;let dx=Math.cos(a)*(4+(k%3)*3),dy=Math.sin(a)*(3+(k%3)*3);b2d(c,x+dx-3,y+dy-4,8,6,['#4fc09c','#7ed6a5','#368e77'][k%3]);}
+}
+function sconce(c,x,y){rr2d(c,x-17,y-8,34,16,4,'#2e4650');rr2d(c,x-14,y-6,28,12,4,'#f4d9a1');b2d(c,x-11,y-3,22,5,'#fff2c9')}
+function chartMon(c,x,y,seed,accent){
+ rr2d(c,x,y,51,30,3,'#071c2b');rr2d(c,x+3,y+3,45,24,1,'#183c4c');
+ b2d(c,x+4,y+4,43,4,'#31596a');
+ for(let j=0;j<5;j++)b2d(c,x+5+j*9,y+18-(j*3+seed)%10,3,5+(j*3+seed)%9,j%2?'#ecae82':'#83d3b4');
+ c.strokeStyle=accent;c.lineWidth=2;c.beginPath();
+ for(let j=0;j<6;j++) {let yy=y+19-((j*7+seed*5)%14);if(j===0)c.moveTo(x+5,yy);else c.lineTo(x+5+j*8,yy)}c.stroke();
+ b2d(c,x+20,y+30,10,3,'#223d49');
+}
+function execDesk2D(c,x,y,seed){
+ // Bird's-eye polished office workstation with two fully flat 2D screens.
+ rr2d(c,x-5,y-4,162,80,6,'#26353b');rr2d(c,x,y,153,69,5,'#d0a77c');
+ b2d(c,x+4,y+4,145,4,'#f9d9ab');b2d(c,x+4,y+61,145,4,'#8d684a');
+ rr2d(c,x+10,y+7,133,44,4,'#6a574b');
+ chartMon(c,x+17,y+10,seed,'#86e9ca');chartMon(c,x+83,y+10,seed+3,'#6fd2ed');
+ b2d(c,x+42,y+55,70,4,'#eadfca');b2d(c,x+49,y+55,5,3,'#738899');
+ rr2d(c,x+119,y+53,19,11,2,'#354958');b2d(c,x+122,y+55,12,2,'#e5dfce');
+ b2d(c,x+9,y+54,13,10,'#ecf1e7');b2d(c,x+11,y+56,9,3,'#a0b8bd');
+ b2d(c,x+142,y+13,5,35,'#74bbbf');
+}
+function ceilingLight2D(c,x,y,w=56){
+ rr2d(c,x,y,w,10,4,'#34494f');rr2d(c,x+4,y+2,w-8,6,2,'#fff2c9');
+}
+function worldLabels2D(){
+  // Real signage with stronger hierarchy, drawn at fixed locations.
+  rr2d(a,65,339,292,24,5,'#1b3944');b2d(a,68,342,4,18,'#80dfc3');txt(a,'TRADING OPERATIONS  /  06 EAs',79,355,12,'#dff7f2',850);
+  rr2d(a,958,244,199,26,5,'#25414b');txt(a,'☕  STAFF COMMONS',973,261,12,'#e6eacb',850);
+  rr2d(a,904,550,246,24,4,'#273b4e');txt(a,'SOCIAL & WELLNESS',922,566,12,'#e2dfea',850);
+  rr2d(a,324,45,176,22,4,'#283d51');txt(a,'NUHA + ADAWIAH',336,60,11,'#f6dce5',850);
+}
+function topDownPolish(){
+ // Decorative geometry aligns strictly to the X/Y plane (no iso perspective).
+ // Glass partitions make the same single-floor room plan feel modern and airy.
+ const C=a;
+ glass2d(C,42,224,256,224,154);glass2d(C,291,224,536,224,414);
+ glass2d(C,573,224,830,224,698);glass2d(C,865,224,1170,224,1008);
+ glass2d(C,808,340,808,768,427,'v');
+ // Glass door handles and directional strips in main corridor.
+ for(let x of [144,404,688,998]){rr2d(C,x-15,234,30,8,3,'#bc9a68');b2d(C,x-2,233,4,9,'#f7edca')}
+ for(let x=98;x<1135;x+=99){b2d(C,x,291,42,2,'#e4f1d527');b2d(C,x+12,288,18,2,'#d8f9e92a')}
+ for(let x of [300,574,846,1160])sconce(C,x,250);
+ // Bird's eye building details: wood plank seams and soft carpet lines.
+ for(let y=104;y<217;y+=24){for(let x=55;x<260;x+=65){b2d(C,x+(y%2?18:0),y,27,1,'#c19a724a')}}
+ for(let y=390;y<780;y+=61){for(let x=58;x<792;x+=61){b2d(C,x,y,51,1,'#9fc2c014')}}
+ for(let x=58;x<782;x+=61)for(let y=386;y<782;y+=61){b2d(C,x+2,y+3,2,2,'#b1d6dd15')}
+ // Lux monitors and desk accessories. Keeps original placement and path obstacles.
+ deskCoords.forEach((d,i)=>{
+   execDesk2D(C,d.x,d.y,i+2);
+   // status plate in flat floor UI, no perspective offset
+   rr2d(C,d.x+1,d.y-27,151,20,4,'#172e3d');b2d(C,d.x+4,d.y-24,3,14,roles[i][2]);
+   txt(C,roles[i][0],d.x+12,d.y-13,11,'#f0f5ee',850);
+   b2d(C,d.x+137,d.y-19,7,7,i%2?'#75dcb0':'#76cce5');
+ });
+ // Washroom/rest, HR lounge and coffee bar richer with perfectly top-down props.
+ rr2d(C,1000,86,96,25,4,'#4b5753');txt(C,'ESPRESSO BAR',1011,103,11,'#ffdeb7',850);
+ for(let x of [1054,1089]){rr2d(C,x,164,15,15,7,'#5a6a6b');rr2d(C,x+3,166,9,9,5,'#fff0d3');}
+ for(let x of [603,744])sconce(C,x,71,33);
+ for(let x of [923,1150])slickPlanter(C,x,288);
+ slickPlanter(C,1119,716);slickPlanter(C,304,750);
+ ceilingLight2D(C,100,81,67);ceilingLight2D(C,360,81,67);
+ ceilingLight2D(C,664,72,67);ceilingLight2D(C,1006,69,67);
+ for(let x of [159,405,649,1058])ceilingLight2D(C,x,310,40);
+ // Minimalist area details and glowing accent trim.
+ b2d(C,31,322,788,4,'#82d6d2');b2d(C,851,540,333,3,'#a7b6db');
+ b2d(C,31,27,236,3,'#c9b58d');b2d(C,280,27,268,3,'#c2b1d4');
+ if(expanded){
+  rr2d(C,1260,299,214,27,5,'#284c4f');txt(C,'INNOVATION  ·  LEVEL 02',1271,317,12,'#daf9e9',850);
+  slickPlanter(C,1455,260);slickPlanter(C,1243,735);
+ }
+ worldLabels2D();
+}
+drawBase=function(){originalBase2D();topDownPolish();};
+
+
+// ================= GEN 3.0 · TRADING FLOOR FOCUS ENGINE =================
+// Visual-only policies: never touches the MT5 terminal or any Expert Advisor.
+// EA traders stay at workstation chairs; support staff may roam and run meetings.
+const deskSeat=i=>({x:deskCoords[i].x+75,y:deskCoords[i].y+109});
+const traderPairs=people.slice(0,6);
+let nextCoffeeRelief=210, deskFramePulse=0, recentTraderBreak=null;
+const __priorCommand3=command;
+command=function(p,where){
+ if(p.id>=6)return __priorCommand3(p,where);
+ const seat=deskSeat(p.id);
+ if(where==='pantry'&&p.allowTravel==='pantry'&&p.trade===null){
+   return __priorCommand3(p,'pantry');
+ }
+ // Central policy guard. Social AI / meetings / random events cannot drag an EA
+ // out of its chair or away from an open trade.
+ if(Math.hypot(p.x-seat.x,p.y-seat.y)<37){
+   p.x=seat.x;p.y=seat.y;p.path=[];p.walking=false;
+   p.where='desk';p.state=p.trade?'🖥️ Managing '+p.trade:'🎧 Trading at PC';
+   p.timer=rand(18,32);p.energy=Math.max(28,p.energy);p.allowTravel=null;return;
+ }
+ const path=route(p.x,p.y,seat.x,seat.y);
+ p.path=path;p.where='desk';p.state='↩️ Returning to trading desk';p.timer=rand(17,26);p.allowTravel=null;
+};
+// Only one trader may take an occasional, SHORT break if idle; no active BUY/SELL.
+const __priorJob3=job;
+job=function(p){
+ if(p.id>=6)return __priorJob3(p);
+ if(p.allowTravel==='pantry'&&p.breakUntil>tickCount&&!p.trade){
+   p.where='pantry';p.state='☕ Scheduled short break';p.timer=Math.min(9,Math.max(3,p.breakUntil-tickCount));return;
+ }
+ command(p,'desk');
+};
+const __priorSocialChat3=socialChat;
+socialChat=function(){
+ let pair=choice(chatPairs),a=people[pair.a],b=people[pair.b];
+ const venue=choice(['hr','lounge','pantry']);
+ // Traders talk over headsets WITHOUT walking out or abandoning their PC.
+ if(a.id>=6&&b.id>=6&&Math.hypot(a.x-b.x,a.y-b.y)>190){
+   command(a,venue);command(b,venue);
+ }
+ const remote=a.id<6||b.id<6;
+ speak(a,pair.words[0],true);
+ setTimeout(()=>{speak(b,pair.words[1],true);addBond(a,b,rand(2,6));updatePanels()},1350);
+ news((remote?'🎧 Headset chat: ':'💬 Office chat: ')+a.name+' & '+b.name+'.','SOCIAL');
+};
+const __priorOfficeMeeting3=officeMeeting;
+officeMeeting=function(){
+ if(meetingTimer>0)return;
+ meetingTimer=23;
+ for(const id of [6,9,8]){command(people[id],'meeting');people[id].timer=15;}
+ // HR/CEO meet in the conference room; the EAs join by video at their desks.
+ for(const p of traderPairs){p.meetingRemote=true;command(p,'desk');p.timer=23;}
+ speak(people[6],'Everyone, join the video meeting from your trading desks!',true);
+ setTimeout(()=>speak(people[9],'No wandering, please. Keep watching your monitors!',true),1300);
+ setTimeout(()=>speak(choice(traderPairs),'Joining from my headset. Charts still monitored!',true),2700);
+ news('HR hybrid meeting: traders join remotely from workstations.','MEETING');
+ toast('🎧 HYBRID HR MEETING · TRADERS STAY AT PCS');
+};
+const __priorOfficeGossip3=officeGossip;
+officeGossip=function(){
+ const a=choice(people),b=choice(people.filter(q=>q!==a));
+ speak(a,choice(dialogues[a.id]),true);
+ setTimeout(()=>{speak(b,choice(dialogues[b.id]),true);addBond(a,b,rand(1,4));updatePanels()},850);
+ earn(8,'Office headset chat.');
+};
+// Admin visual reactions never make a trader abandon an open simulated position.
+const __priorSimTrade3=simTrade;
+simTrade=function(kind){__priorSimTrade3(kind);for(const p of traderPairs)if(p.trade)command(p,'desk');};
+const __priorOfficeTick3=officeTick;
+officeTick=function(dt){
+ __priorOfficeTick3(dt);
+ const ds=dt/1000*timeScale;
+ deskFramePulse+=ds;
+ for(const p of traderPairs){
+   if(p.where==='desk'&&!p.walking){p.energy=clamp(p.energy+ds*.09,25,100)}
+   if(p.trade&&p.allowTravel){p.allowTravel=null;command(p,'desk');}
+   if(p.meetingRemote&&meetingTimer<=0){p.meetingRemote=false;}
+ }
+ // Once in several real-time minutes, one idle trader briefly gets coffee.
+ // The rest continue desk duty (and nobody on an open position can leave).
+ nextCoffeeRelief-=ds;
+ if(nextCoffeeRelief<=0){
+   nextCoffeeRelief=rand(225,340);
+   const candidates=traderPairs.filter(p=>p.where==='desk'&&!p.trade&&p.path.length===0);
+   const p=candidates.length?choice(candidates):null;
+   if(p){p.allowTravel='pantry';p.breakUntil=tickCount+25;__priorCommand3(p,'pantry');
+       p.state='☕ Short authorized break';p.timer=rand(7,10);p.energy=clamp(p.energy+13,0,100);
+       recentTraderBreak=p.id;news(p.name+' took a short scheduled break. Others remain at their PCs.','BREAK');}
+ }
+ // End the single short break, returning to the desk via normal navigation.
+ for(const p of traderPairs)if(p.allowTravel&&tickCount>p.breakUntil){p.allowTravel=null;command(p,'desk');}
+};
+// Bird's-eye trading traders seated in ergonomic chairs, shoulders leaning to PC,
+// headset ear cups, animated keyboard movement, all six visually distinct.
+function seatedTrader(c,p,now){
+ const x=Math.round(p.x),y=Math.round(p.y),pulse=Math.sin(now*.005+p.id*2),typing=Math.sin(now*.018+p.id);
+ c.save();c.translate(x,y);
+ // Chair seat silhouette and shadow, visible below clothing and head.
+ box(c,-23,-27,48,58,'#0d2b39a0');round(c,-19,-24,38,51,9,'#193846');
+ round(c,-16,-18,32,33,7,['#34788e','#776798','#916f50','#458774','#977d4f','#5e7fa2'][p.id]);
+ box(c,-14,-12,28,22,p.color);box(c,-10,-8,20,10,'#ffffff20');
+ // Sleeves reach forward toward dual monitors above the chair.
+ box(c,-22,-22,9,19,p.color);box(c,14,-22,9,19,p.color);
+ box(c,-21,-28-Math.round(Math.max(0,typing)*2),8,9,'#f0c9a4');
+ box(c,14,-28-Math.round(Math.max(0,-typing)*2),8,9,'#f0c9a4');
+ // Face/top of head and headset arch: top-down with desk-facing posture.
+ round(c,-14,-51,28,29,7,'#e9c49c');
+ box(c,-15,-54,30,9,['#263846','#38304b','#40372e','#293b37','#453624','#293d55'][p.id]);
+ box(c,-16,-46,5,18,'#132f3a');box(c,12,-46,5,18,'#132f3a');
+ box(c,-18,-37,6,8,'#7bd0e3');box(c,13,-37,6,8,'#7bd0e3');
+ box(c,13,-30,10,2,'#80cee0');box(c,21,-29,3,5,'#d8e7f5');
+ // Tiny typing/breathing animation with keyboard hand indicator.
+ box(c,-5,-23-Math.round(pulse),10,3,'#d6dbd4');
+ // Workplace badge below chair, leaving the monitor screens visible.
+ const w=Math.max(78,p.name.length*8+17);
+ round(c,-w/2,34,w,19,4,'#102d3be8');box(c,-w/2+3,38,4,11,p.color);
+ txt(c,p.name,0,47,10,'#eefaf4',850,'center');
+ if(p.trade){round(c,19,-60,39,15,3,p.trade==='BUY'?'#327fb0':'#bc6467');txt(c,p.trade,38,-49,9,'#f8fffa',900,'center')}
+ if(p.meetingRemote){round(c,-42,-74,84,17,4,'#365b76');txt(c,'🎧 VIDEO',0,-62,10,'#eaf5f3',850,'center')}
+ if(selected===p.id){c.strokeStyle='#f8dc85';c.lineWidth=2;c.strokeRect(-26,-56,52,91)}
+ c.restore();awardVisual(c,p);
+}
+const __priorActor3=drawActor;
+drawActor=function(c,p,now){
+ if(p.id<6&&p.where==='desk'&&!p.walking&&Math.hypot(p.x-deskSeat(p.id).x,p.y-deskSeat(p.id).y)<40){seatedTrader(c,p,now);return}
+ __priorActor3(c,p,now);
+};
+// Individual animated market charts inside each dual-monitor workstation.
+const __priorRender3=render;
+render=function(now){
+ __priorRender3(now);
+ // Because chart pixels belong in the world (not HTML overlays), redraw a
+ // compact animated chart inside each of the 12 screens, aligned to the desk.
+ ctx.save();ctx.setTransform(dpr,0,0,dpr,0,0);
+ ctx.translate(screenW/2,screenH/2);ctx.scale(scale,scale);ctx.translate(-cx,-cy);
+ for(let i=0;i<6;i++){
+   const d=deskCoords[i],p=people[i],col=p.trade==='BUY'?'#79ccff':p.trade==='SELL'?'#f7a0a4':'#92e8bb';
+   for(let mon=0;mon<2;mon++){
+     const x=d.x+(mon?86:20),y=d.y+13;
+     box(ctx,x,y,44,22,'#09263a');box(ctx,x+1,y+1,42,3,'#315a69');
+     for(let j=0;j<8;j++){
+       const v=7+Math.sin(j*.95+now*.0012+i*2+mon)*5+Math.cos(j*1.5+now*.00075)*3;
+       const hh=Math.max(3,Math.min(13,Math.round(v)));
+       box(ctx,x+3+j*5,y+18-hh,3,hh,(j+i+mon)%3?'#70bdce':'#a1e8bb');
+     }
+     for(let j=0;j<7;j++){
+       const yy=y+15-Math.sin(j*.82+now*.0015+i+mon)*5;
+       line(ctx,x+3+j*5,yy,x+8+j*5,y+15-Math.sin((j+1)*.82+now*.0015+i+mon)*5,col,1.5);
+     }
+     box(ctx,x+39,y+2,3,3,col);
+   }
+   // Animated keyboard status glow under each pair of screens.
+   const k=155+Math.round(60*Math.sin(now*.006+i*2));
+   box(ctx,d.x+58,d.y+56,37,3,`rgba(${k},243,212,.6)`);
+ }
+ ctx.restore();
+};
+// Header and compact monitoring cards update without changing existing ranking.
+function updateDeskCards(){
+ const active=traderPairs.filter(p=>p.where==='desk'&&!p.walking).length;
+ el('stageWork').textContent=`🪑 ${active}/6 AT DESKS`;
+ el('focusStat').textContent=`${active} / 6 traders at PCs`;
+ const boxEl=el('focusGrid');
+ boxEl.innerHTML=traderPairs.map(p=>{
+  const state=p.trade?p.trade:p.where==='desk'?'ANALYZING':'SHORT BREAK';
+  const color=p.trade==='SELL'?'#ff9ea2':p.trade==='BUY'?'#8bcbff':'#a0e9c4';
+  return `<button class="focus-item" data-actor="${p.id}"><b><span class="focus-dot" style="background:${color}"></span>${escapeHtml(p.name)}</b><small>${escapeHtml(state)}</small></button>`;
+ }).join('');
+ boxEl.querySelectorAll('[data-actor]').forEach(button=>button.onclick=()=>{let p=people[+button.dataset.actor];select(p);focus(p.x,p.y,true)});
+}
+const __priorPanels3=updatePanels;
+updatePanels=function(){__priorPanels3();updateDeskCards();};
+const __priorBind3=bind;
+bind=function(){__priorBind3();el('deskRecall').onclick=()=>{
+  nextCoffeeRelief=rand(225,340);
+  for(const p of traderPairs){p.allowTravel=null;command(p,'desk');}
+  updatePanels();news('CEO requested everyone return to trading workstations.','TRADING FLOOR');toast('🪑 TRADERS RETURNING TO THEIR PCS');
+ };};
+// ================= END GEN 3.0 FOCUS ENGINE =================
+
+let prev=0,uiFrame=0;
+function frame(t){if(!prev)prev=t;let dt=Math.min(45,t-prev);prev=t;officeTick(dt);render(t);requestAnimationFrame(frame)}
+function start(){setupRoster();bind();rebuildNav();drawBase();resize();new ResizeObserver(resize).observe(stage);
+ news('Welcome back, CEO! Your office is ready.','SYSTEM');news('Nuha: “Everyone, keep your desks CLEAN!”','HR');news('Adawiah: “And please STOP leaving cups in the pantry!”','HR');news('Cleaner: “Who finished all the coffee?!”','FACILITIES');
+ people.forEach(p=>{p.timer=rand(1,5);if(p.id===6){speak(p,'Everyone, I have an ANNOUNCEMENT!')}else if(p.id===7){speak(p,'This office needs more coffee and less mess!')}else if(p.id===9){speak(p,'Attention, everyone! Adawiah from HR is watching!')}});
+ updatePanels();requestAnimationFrame(frame)}
+try{start()}catch(e){console.error(e);el('stage').insertAdjacentHTML('beforeend',`<div style="position:absolute;inset:20px;background:#132536;z-index:4;padding:20px;border:2px solid #ffb9ac;color:white"><h2>Office could not start</h2><p>${escapeHtml(e.message)}</p><p>Try reloading in a modern version of Safari, Chrome, or Firefox.</p></div>`)}
+})();
+</script></body></html>
